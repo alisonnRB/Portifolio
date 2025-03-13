@@ -1,6 +1,7 @@
 import './dragon.css';
 import Background from './background';
 import Camada5 from './camada5';
+import Camada4 from './camada4';
 
 export default function Dragon() {
 
@@ -11,6 +12,9 @@ export default function Dragon() {
 
             {/* camada5 */}
             <Camada5 />
+
+            {/* camada4 */}
+            <Camada4 />
 
         </div>
     );
