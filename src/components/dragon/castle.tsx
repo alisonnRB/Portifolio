@@ -40,7 +40,7 @@ const Castle = () => {
     useEffect(() => {
         if (canvasRef.current) {
             animation.current = new Animations(canvasRef.current, '/resources/castle_spriteSheet.png', 179);
-            animation.current.loop(true, 70);
+            animation.current.loop(true, 110);
 
             return () => {
                 animation.current?.stopAnimation();
