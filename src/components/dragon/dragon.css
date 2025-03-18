@@ -1,7 +1,7 @@
 .background-container {
   display: flex;
   height: 100vh;
-  animation: move 10s linear reverse infinite;
+  animation: move 20s linear reverse infinite;
 }
 
 .background {
@@ -13,33 +13,66 @@
 
 .camada5 {
   flex-shrink: 0;
-  height: 100%;
   background: url('./source/quintaCamada.png') no-repeat;
   background-size: fill;
-  animation: move5 20s linear infinite;
-}
-
-.camada5-1 {
-  animation-delay: 5s;
-  opacity: 0;
-}
-
-.camada5-2 {
-  animation-delay: 2s;
-  opacity: 0;
+  animation: move5 55s linear infinite;
+  animation-delay: -2.5s;
 }
 
 .camada4 {
   flex-shrink: 0;
-  height: 100%;
   background: url('./source/quartaCamada.png') no-repeat;
   background-size: fill;
-  animation: move5 17s linear infinite;
+  animation: move5 60s linear infinite;
+  animation-delay: -1.5s;
 }
 
-.camada4-1 {
-  animation-delay: 10s;
-  opacity: 0;
+.camada3 {
+  flex-shrink: 0;
+  background: url('./source/terceiraCamada.png') no-repeat;
+  background-size: fill;
+  animation: move5 58s linear infinite;
+  animation-delay: -0.5s;
+}
+
+.camada2 {
+  flex-shrink: 0;
+  background: url('./source/segundaCamada.png') no-repeat;
+  background-size: fill;
+  animation: move5 35s linear infinite reverse;
+  animation-delay: -1s;
+}
+
+.camada25 {
+  flex-shrink: 0;
+  background: url('./source/segundaCamada.png') no-repeat;
+  background-size: fill;
+  animation: move5 20s linear infinite reverse;
+  animation-delay: -2.7s;
+}
+
+.camada1 {
+  flex-shrink: 0;
+  background: url('./source/primeiraCamada.png') no-repeat;
+  background-size: fill;
+  animation: move5 10s linear infinite reverse;
+  animation-delay: -3s;
+}
+
+.camada5.num1,
+.camada4.num1,
+.camada3.num1,
+.camada2.num1,
+.camada1.num1 {
+  animation-delay: -20s;
+}
+
+.camada5.num2,
+.camada4.num2,
+.camada3.num2,
+.camada2.num2,
+.camada1.num2 {
+  animation-delay: -30s;
 }
 
 @keyframes move {
@@ -66,7 +99,7 @@
 
 .castle-canvas {
   position: absolute;
-  z-index: 60;
+  z-index: 40;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);

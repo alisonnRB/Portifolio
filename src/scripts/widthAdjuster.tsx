@@ -7,7 +7,9 @@ export function widthAdjuster(selector: string, image: { src: string }) {
 
         img.onload = () => {
             const imgWidth = img.width;
-            (element as HTMLDivElement).style.width = `${imgWidth * 2}px`;
+            const imgHeight = img.height;
+            (element as HTMLDivElement).style.width = `${imgWidth}px`;
+            (element as HTMLDivElement).style.height = `${imgHeight}px`;
         };
     });
 }

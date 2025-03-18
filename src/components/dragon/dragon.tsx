@@ -1,7 +1,12 @@
 import './dragon.css';
 import Background from './background';
-import Camada5 from './camada5';
-import Camada4 from './camada4';
+import Camada from './camada';
+
+import quintaCamada from "./source/quintaCamada.png";
+import quartaCamada from "./source/quartaCamada.png";
+import terceiraCamada from "./source/terceiraCamada.png";
+import segundaCamada from "./source/segundaCamada.png";
+import primeiraCamada from "./source/primeiraCamada.png";
 import Castle from './castle';
 
 export default function Dragon() {
@@ -12,14 +17,36 @@ export default function Dragon() {
             <Background />
 
             {/* camada5 */}
-            <Camada5 />
+            <Camada img={quintaCamada} camada="camada5" num={0} zIndex={20} bottom={40} />
+            <Camada img={quintaCamada} camada="camada5" num={1} zIndex={20} bottom={30} />
+            <Camada img={quintaCamada} camada="camada5" num={2} zIndex={20} bottom={25} />
 
             {/* camada4 */}
-            <Camada4 />
+            <Camada img={quartaCamada} camada="camada4" num={0} zIndex={30} bottom={2} />
+            <Camada img={quartaCamada} camada="camada4" num={1} zIndex={30} bottom={3} />
+            <Camada img={quartaCamada} camada="camada4" num={2} zIndex={30} bottom={1} />
 
             {/* castle */}
             <Castle />
 
+            {/* camada3 */}
+            <Camada img={terceiraCamada} camada="camada3" num={0} zIndex={25} bottom={2} />
+            <Camada img={terceiraCamada} camada="camada3" num={1} zIndex={25} bottom={5} />
+            <Camada img={terceiraCamada} camada="camada3" num={2} zIndex={25} bottom={3} />
+
+            {/* camada2 */}
+            <Camada img={segundaCamada} camada="camada2" num={0} zIndex={60} bottom={-1.5} />
+            <Camada img={segundaCamada} camada="camada2" num={1} zIndex={60} bottom={-1.5} />
+            <Camada img={segundaCamada} camada="camada2" num={2} zIndex={60} bottom={-1.5} />
+
+            <Camada img={segundaCamada} camada="camada25" num={0} zIndex={60} bottom={-2} />
+            <Camada img={segundaCamada} camada="camada25" num={1} zIndex={60} bottom={-2} />
+            <Camada img={segundaCamada} camada="camada25" num={2} zIndex={60} bottom={-2} />
+
+            {/* camada1 */}
+            <Camada img={primeiraCamada} camada="camada1" num={0} zIndex={70} bottom={-0.5} />
+            <Camada img={primeiraCamada} camada="camada1" num={1} zIndex={70} bottom={-0.5} />
+            <Camada img={primeiraCamada} camada="camada1" num={2} zIndex={70} bottom={-0.5} />
         </div>
     );
 }
