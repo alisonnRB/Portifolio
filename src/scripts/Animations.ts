@@ -75,7 +75,7 @@ export class Animations {
         );
     }
 
-    loop(loop: boolean, rate: number) {
+    loop(loop: boolean, rate: number, onComplete?: () => void): boolean | void {
         if (this.animationInterval) {
             clearInterval(this.animationInterval);
         }
@@ -84,6 +84,9 @@ export class Animations {
             this.currentSprite++;
             if (loop && this.currentSprite >= this.spriteNumber) {
                 this.currentSprite = 0;
+            } else if (!loop && this.currentSprite >= this.spriteNumber) {
+                if (onComplete) onComplete()
+                return
             }
 
             this.draw();

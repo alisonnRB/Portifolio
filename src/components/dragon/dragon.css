@@ -104,3 +104,26 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.dragon-canvas {
+  position: absolute;
+  z-index: 80;
+  bottom: 50%;
+  right: -3%;
+  transform: translateY(65%);
+}
+
+.dragons-cloud {
+  position: absolute;
+  z-index: 80;
+  bottom: 39%;
+  right: 0;
+  transform: translateY(100%);
+}
+
+@media (orientation: landscape) {
+  .dragons-cloud {
+    visibility: hidden;
+  }
+
+}

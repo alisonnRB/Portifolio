@@ -7,9 +7,11 @@ import quartaCamada from "./source/quartaCamada.png";
 import terceiraCamada from "./source/terceiraCamada.png";
 import segundaCamada from "./source/segundaCamada.png";
 import primeiraCamada from "./source/primeiraCamada.png";
-import Castle from './castle';
 
-export default function Dragon() {
+import Castle from './castle';
+import Dragon from './dragon';
+
+export default function DragonCenarie() {
 
     return (
         <div className="h-full w-full relative overflow-hidden">
@@ -47,6 +49,9 @@ export default function Dragon() {
             <Camada img={primeiraCamada} camada="camada1" num={0} zIndex={70} bottom={-0.5} />
             <Camada img={primeiraCamada} camada="camada1" num={1} zIndex={70} bottom={-0.5} />
             <Camada img={primeiraCamada} camada="camada1" num={2} zIndex={70} bottom={-0.5} />
+
+            {/* Dragon */}
+            <Dragon />
         </div>
     );
 }
