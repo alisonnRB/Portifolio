@@ -49,7 +49,7 @@ export default function Dragon() {
     useEffect(() => {
         if (animatinState == "intro" && canvasRef.current) {
             animation.current = new Animations(canvasRef.current, '/resources/dragon_intro_spriteSheet.png', 48);
-            animation.current.loop(false, 110, () => { setAnimationState("idle") });
+            animation.current.loop(false, 45, () => { setAnimationState("idle") });
 
             return () => {
                 animation.current?.stopAnimation();
@@ -60,7 +60,7 @@ export default function Dragon() {
     useEffect(() => {
         if (animatinState == "idle" && canvasRef.current) {
             animation.current = new Animations(canvasRef.current, '/resources/dragon_idle_spriteSheet.png', 16);
-            animation.current.loop(true, 110);
+            animation.current.loop(true, 60);
 
             return () => {
                 animation.current?.stopAnimation();

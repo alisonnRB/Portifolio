@@ -107,7 +107,7 @@
 
 .dragon-canvas {
   position: absolute;
-  z-index: 80;
+  z-index: 60;
   bottom: 50%;
   right: -3%;
   transform: translateY(65%);
@@ -115,7 +115,7 @@
 
 .dragons-cloud {
   position: absolute;
-  z-index: 80;
+  z-index: 60;
   bottom: 39%;
   right: 0;
   transform: translateY(100%);
@@ -125,5 +125,70 @@
   .dragons-cloud {
     visibility: hidden;
   }
+
+}
+
+.title-content {
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-70%);
+  opacity: 0;
+  animation: title-born 2.2s linear;
+}
+
+.dragon-title {
+  font-size: clamp(3.5rem, 13vw, 15vw);
+  font-weight: 400;
+  font-style: normal;
+  animation: flashing .1s linear infinite 1s;
+  opacity: 0.8;
+}
+
+.dragon-sub-title {
+  font-size: clamp(1rem, 2.8vw, 4vw);
+  font-weight: 400;
+  font-style: normal;
+  transform: translateY(90%) translateX(11%);
+  animation: flashing .1s linear infinite 1s;
+  opacity: 0.8;
+}
+
+@keyframes flashing {
+  0% {
+    color: white;
+  }
+
+  100% {
+    color: #262626;
+  }
+}
+
+@keyframes title-born {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (orientation: portrait) {
+  .title-content {
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%) translateY(-70%);
+    opacity: 0;
+    animation: title-born 2.2s linear;
+  }
+
 
 }

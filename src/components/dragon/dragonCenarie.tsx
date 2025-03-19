@@ -8,6 +8,7 @@ import terceiraCamada from "./source/terceiraCamada.png";
 import segundaCamada from "./source/segundaCamada.png";
 import primeiraCamada from "./source/primeiraCamada.png";
 
+import Title from './title';
 import Castle from './castle';
 import Dragon from './dragon';
 
@@ -52,6 +53,9 @@ export default function DragonCenarie() {
 
             {/* Dragon */}
             <Dragon />
+
+            {/* Title */}
+            <Title />
         </div>
     );
 }
