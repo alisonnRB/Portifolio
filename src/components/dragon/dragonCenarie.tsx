@@ -1,4 +1,7 @@
 import './dragon.css';
+import Image from 'next/image';
+import arrow from './source/arow.png';
+
 import Background from './background';
 import Camada from './camada';
 
@@ -56,6 +59,14 @@ export default function DragonCenarie() {
 
             {/* Title */}
             <Title />
+
+            {/* To bottom */}
+            <Image
+                src={arrow}
+                className="absolute z-90 arrow"
+                alt="arrow to bottom"
+                priority
+            />
         </div>
     );
 }

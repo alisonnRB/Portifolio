@@ -190,5 +190,28 @@
     animation: title-born 2.2s linear;
   }
 
+}
 
+.arrow {
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: clamp(3.2rem, 4vw, 10vw);
+  width: clamp(3.2rem, 4vw, 10vw);
+  cursor: pointer;
+  animation: arrow-Born 4.5s linear;
+}
+
+@keyframes arrow-Born {
+  0% {
+    opacity: 0;
+  }
+
+  99% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
