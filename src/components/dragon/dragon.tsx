@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
 import { Animations } from "@/scripts/Animations";
 import cloud from "../dragon/source/DragonsCloud.png";
 import Image from "next/image";
 
-export default function Dragon() {
+export default function Dragon({ currentView, changeView }: { currentView: String; changeView: (name: String) => void; }) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const animation = useRef<Animations | null>(null);
     const [isPortrait, setIsPortrait] = useState<boolean>(false);
@@ -30,7 +31,7 @@ export default function Dragon() {
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (canvas) {
+        if (canvas && currentView == "dragon_intro") {
             if (isPortrait) {
                 canvas.style.height = "30dvh";
                 canvas.style.width = "calc(30dvh * 1.133)";
@@ -44,10 +45,10 @@ export default function Dragon() {
             setAnimationState('intro');
         }
 
-    }, [isPortrait, animatinState]);
+    }, [isPortrait, animatinState, currentView]);
 
     useEffect(() => {
-        if (animatinState == "intro" && canvasRef.current) {
+        if (animatinState == "intro" && canvasRef.current && currentView == "dragon_intro") {
             animation.current = new Animations(canvasRef.current, '/resources/dragon_intro_spriteSheet.png', 48);
             animation.current.loop(false, 45, () => { setAnimationState("idle") });
 
@@ -61,6 +62,7 @@ export default function Dragon() {
         if (animatinState == "idle" && canvasRef.current) {
             animation.current = new Animations(canvasRef.current, '/resources/dragon_idle_spriteSheet.png', 16);
             animation.current.loop(true, 60);
+            changeView("dragon_idle")
 
             return () => {
                 animation.current?.stopAnimation();

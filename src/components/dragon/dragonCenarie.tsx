@@ -1,4 +1,5 @@
 import './dragon.css';
+
 import Image from 'next/image';
 import arrow from './source/arow.png';
 
@@ -15,7 +16,12 @@ import Title from './title';
 import Castle from './castle';
 import Dragon from './dragon';
 
+import { useContext } from 'react';
+import { viewContext } from "@/scripts/viewContext";
+
+
 export default function DragonCenarie() {
+    const { changeView, currentView } = useContext(viewContext)
 
     return (
         <section className='section-container'>
@@ -56,10 +62,10 @@ export default function DragonCenarie() {
                 <Camada img={primeiraCamada} camada="camada1" num={2} zIndex={70} bottom={-0.5} />
 
                 {/* Dragon */}
-                <Dragon />
+                <Dragon currentView={currentView} changeView={changeView} />
 
                 {/* Title */}
-                <Title />
+                {currentView == "dragon_intro" ? <Title /> : <></>}
 
                 {/* To bottom */}
                 <Image
