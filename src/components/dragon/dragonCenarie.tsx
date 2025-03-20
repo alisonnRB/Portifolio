@@ -3,7 +3,7 @@ import Image from 'next/image';
 import arrow from './source/arow.png';
 
 import Background from './background';
-import Camada from './camada';
+import Camada from '../camada';
 
 import quintaCamada from "./source/quintaCamada.png";
 import quartaCamada from "./source/quartaCamada.png";
@@ -18,7 +18,7 @@ import Dragon from './dragon';
 export default function DragonCenarie() {
 
     return (
-        <div className="h-full w-full relative overflow-hidden">
+        <section className="h-full w-full relative overflow-hidden">
             {/* fundo */}
             <Background />
 
@@ -67,6 +67,6 @@ export default function DragonCenarie() {
                 alt="arrow to bottom"
                 priority
             />
-        </div>
+        </section>
     );
 }
