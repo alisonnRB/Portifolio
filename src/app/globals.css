@@ -25,3 +25,25 @@ body {
   outline: none;
   overflow: hidden;
 }
+
+.home::-webkit-scrollbar {
+  display: none;
+}
+
+.home {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: 0;
+  height: 100dvh;
+  scroll-snap-type: y mandatory;
+}
+
+.section-container {
+  height: 100dvh;
+  width: 100dvw;
+  position: sticky;
+  top: 0;
+  left: 0;
+  scroll-snap-align: start;
+}
