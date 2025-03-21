@@ -1,35 +1,31 @@
 .background-hilda {
-    flex-shrink: 0;
-    height: 100dvh;
-    width: 100dvw;
     background: url('./source/fundo.png') no-repeat;
     background-size: fill;
 }
 
-.camada1-hilda {
-    flex-shrink: 0;
-    height: 100%;
-    background: url('./source/primeiraCamada.png') no-repeat;
+.camada1-hilda,
+.camada3-hilda,
+.camada4-hilda {
+    background-repeat: no-repeat;
+    animation: move5 linear infinite reverse;
     background-size: fill;
-    animation: move5 120s linear infinite reverse;
+}
+
+.camada1-hilda {
+    background: url('./source/primeiraCamada.png');
+    animation-duration: 120s;
     animation-delay: -6.5s;
 }
 
 .camada3-hilda {
-    flex-shrink: 0;
-    height: 100%;
-    background: url('./source/terceiraCamada.png') no-repeat;
-    background-size: fill;
-    animation: move5 30s linear infinite reverse;
+    background: url('./source/terceiraCamada.png');
+    animation-duration: 30s;
     animation-delay: -2.5s;
 }
 
 .camada4-hilda {
-    flex-shrink: 0;
-    height: 100%;
     background: url('./source/quartaCamada.png') no-repeat;
-    background-size: fill;
-    animation: move5 10s linear infinite reverse;
+    animation-duration: 10s;
 }
 
 
@@ -40,13 +36,10 @@
 .hilda-container {
     display: flex;
     align-items: end;
-    height: 100vh;
     animation: move 10s linear infinite;
 }
 
 .hilda-part {
-    flex-shrink: 0;
-    bottom: 0;
     height: 30%;
     background: url('./source/segundaCamada.png') no-repeat;
     background-size: fill;

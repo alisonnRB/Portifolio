@@ -26,9 +26,9 @@ export default function CamadaRepeat({ img, container, section, zIndex }: { img:
     }, []);
 
     return (
-        <div className={`absolute ${container} overflow-hidden`} style={{ zIndex }}>
-            <div className={`${section}`}></div>
-            <div className={`${section}`}></div>
+        <div className={`absolute ${container} overflow-hidden flex h-[100dvh] shrink-0`} style={{ zIndex }}>
+            <div className={`${section} shrink-0`}></div>
+            <div className={`${section} shrink-0`}></div>
         </div>
     )
 }

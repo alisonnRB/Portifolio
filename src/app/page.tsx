@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <ViewProvider>
 
-      <div className="home">
+      <div className="home overflow-x-hidden overflow-y-scroll h-[100dvh]">
 
         <DragonCenarie />
         <HildaCenarie />

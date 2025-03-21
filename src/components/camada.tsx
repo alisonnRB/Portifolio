@@ -25,7 +25,7 @@ export default function Camada({
     return (
         <span className="absolute flex flex-col justify-end h-full w-full" style={{ zIndex }}>
             <div
-                className={`absolute overflow-hidden ${camada} ${num ? "num" + num : null}`}
+                className={`absolute overflow-hidden ${camada} ${num ? "num" + num : null} shrink-0`}
                 style={{ zIndex, bottom: `${bottom}dvh` }}
             ></div>
         </span>

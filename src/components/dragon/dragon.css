@@ -1,61 +1,61 @@
 .background-container {
-  display: flex;
-  height: 100vh;
   animation: move 20s linear reverse infinite;
 }
 
 .background {
-  flex-shrink: 0;
   height: 130%;
   background: url('./source/fundo.png') no-repeat;
   background-size: fill;
 }
 
+.camada1,
+.camada2,
+.camada25,
+.camada3,
+.camada4,
 .camada5 {
-  flex-shrink: 0;
-  background: url('./source/quintaCamada.png') no-repeat;
+  background-repeat: no-repeat;
   background-size: fill;
-  animation: move5 55s linear infinite;
+  animation: move5 linear infinite;
+}
+
+.camada5 {
+  background: url('./source/quintaCamada.png');
+  animation-duration: 55s;
   animation-delay: -2.5s;
 }
 
 .camada4 {
-  flex-shrink: 0;
-  background: url('./source/quartaCamada.png') no-repeat;
-  background-size: fill;
-  animation: move5 60s linear infinite;
+  background: url('./source/quartaCamada.png');
+  animation-duration: 60s;
   animation-delay: -1.5s;
 }
 
 .camada3 {
-  flex-shrink: 0;
-  background: url('./source/terceiraCamada.png') no-repeat;
-  background-size: fill;
-  animation: move5 58s linear infinite;
+  background: url('./source/terceiraCamada.png');
+  animation-duration: 58s;
   animation-delay: -0.5s;
 }
 
 .camada2 {
-  flex-shrink: 0;
-  background: url('./source/segundaCamada.png') no-repeat;
-  background-size: fill;
-  animation: move5 35s linear infinite reverse;
+  background: url('./source/segundaCamada.png');
+  animation-duration: 35s;
+  animation-direction: reverse;
   animation-delay: -1s;
 }
 
 .camada25 {
-  flex-shrink: 0;
-  background: url('./source/segundaCamada.png') no-repeat;
-  background-size: fill;
-  animation: move5 20s linear infinite reverse;
+  background: url('./source/segundaCamada.png');
+  animation-duration: 30s;
+  animation-direction: reverse;
   animation-delay: -2.7s;
 }
 
 .camada1 {
-  flex-shrink: 0;
   background: url('./source/primeiraCamada.png') no-repeat;
+  animation-duration: 10s;
+  animation-direction: reverse;
   background-size: fill;
-  animation: move5 10s linear infinite reverse;
   animation-delay: -3s;
 }
 
@@ -75,82 +75,41 @@
   animation-delay: -30s;
 }
 
-@keyframes move {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes move5 {
-  from {
-    transform: translateX(-100%);
-    opacity: 1;
-  }
-
-  to {
-    transform: translateX(100%);
-    opacity: 1;
-  }
-}
-
 .castle-canvas {
-  position: absolute;
-  z-index: 40;
-  bottom: 0;
-  left: 50%;
   transform: translateX(-50%);
 }
 
 .dragon-canvas {
-  position: absolute;
-  z-index: 60;
-  bottom: 50%;
-  right: -3%;
   transform: translateY(65%);
 }
 
 .dragons-cloud {
-  position: absolute;
-  z-index: 60;
-  bottom: 39%;
-  right: 0;
   transform: translateY(100%);
 }
 
-@media (orientation: landscape) {
-  .dragons-cloud {
-    visibility: hidden;
-  }
 
-}
 
 .title-content {
-  left: 50%;
-  top: 50%;
   transform: translateX(-50%) translateY(-70%);
-  opacity: 0;
   animation: title-born 2.2s linear;
 }
 
 .dragon-title {
   font-size: clamp(3.5rem, 13vw, 15vw);
-  font-weight: 400;
-  font-style: normal;
   animation: flashing .1s linear infinite 1s;
-  opacity: 0.8;
 }
 
 .dragon-sub-title {
   font-size: clamp(1rem, 2.8vw, 4vw);
-  font-weight: 400;
-  font-style: normal;
   transform: translateY(90%) translateX(11%);
   animation: flashing .1s linear infinite 1s;
-  opacity: 0.8;
+}
+
+.arrow {
+  transform: translateX(-50%);
+  height: clamp(3.2rem, 4vw, 10vw);
+  width: clamp(3.2rem, 4vw, 10vw);
+  animation: arrow-Born 4.5s linear;
 }
 
 @keyframes flashing {
@@ -192,16 +151,6 @@
 
 }
 
-.arrow {
-  bottom: 3%;
-  left: 50%;
-  transform: translateX(-50%);
-  height: clamp(3.2rem, 4vw, 10vw);
-  width: clamp(3.2rem, 4vw, 10vw);
-  cursor: pointer;
-  animation: arrow-Born 4.5s linear;
-}
-
 @keyframes arrow-Born {
   0% {
     opacity: 0;
@@ -214,4 +163,36 @@
   100% {
     opacity: 1;
   }
+}
+
+
+
+@keyframes move {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes move5 {
+  from {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+}
+
+
+@media (orientation: landscape) {
+  .dragons-cloud {
+    visibility: hidden;
+  }
+
 }

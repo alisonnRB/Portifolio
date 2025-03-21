@@ -28,7 +28,7 @@ export default function HildaCenarie() {
 
     return (
         <section className="section-container" ref={ref}>
-            <div className="relative background-hilda overflow-hidden z-0">
+            <div className="relative background-hilda overflow-hidden z-0 shrink-0 h-[100dvh] w-[100dvw]">
                 {/* camada 1 */}
                 <Camada img={primeiraCamada} camada="camada1-hilda" num={0} zIndex={10} bottom={-10} />
                 <Camada img={primeiraCamada} camada="camada1-hilda" num={1} zIndex={10} bottom={-5} />
@@ -41,6 +41,11 @@ export default function HildaCenarie() {
 
                 {/* camada 4 */}
                 <Camada img={quartaCamada} camada="camada4-hilda" num={0} zIndex={40} bottom={-10} />
+
+                {/* title 1 */}
+                <h1>
+                    WHO AM I?
+                </h1>
             </div>
         </section>
     );

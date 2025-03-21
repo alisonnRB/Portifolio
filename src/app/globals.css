@@ -31,11 +31,8 @@ body {
 }
 
 .home {
-  overflow-x: hidden;
-  overflow-y: scroll;
   scroll-behavior: smooth;
   scrollbar-width: 0;
-  height: 100dvh;
   scroll-snap-type: y mandatory;
 }
 

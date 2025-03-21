@@ -20,7 +20,7 @@ const Castle = () => {
 
 
     return (
-        <canvas ref={canvasRef} className="castle-canvas" style={{ height: '95dvh', width: 'calc(95dvh * 0.390625)' }}>
+        <canvas ref={canvasRef} className="castle-canvas absolute z-40 bottom-0 left-[50%]" style={{ height: '95dvh', width: 'calc(95dvh * 0.390625)' }}>
         </canvas>
     );
 };

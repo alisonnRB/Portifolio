@@ -80,7 +80,7 @@ export default function DragonCenarie() {
                 {/* To bottom */}
                 <Image
                     src={arrow}
-                    className="absolute z-90 arrow"
+                    className="absolute z-90 arrow bottom-[3%] left-[50%] cursor-pointer"
                     alt="arrow to bottom"
                     priority
                 />

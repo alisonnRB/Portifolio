@@ -73,12 +73,12 @@ export default function Dragon({ currentView, changeView }: { currentView: Strin
 
     return (
         <>
-            <canvas ref={canvasRef} className="dragon-canvas" style={{ height: '100dvh', width: 'calc(100dvh * 1.133)' }}>
+            <canvas ref={canvasRef} className="dragon-canvas absolute z-60 bottom-[50%] right-[-3%]" style={{ height: '100dvh', width: 'calc(100dvh * 1.133)' }}>
             </canvas>
 
             <Image
                 src={cloud}
-                className="dragons-cloud"
+                className="dragons-cloud absolute z-60 bottom-[39%] right-0"
                 alt="Cloud of dragon"
                 priority
             />
