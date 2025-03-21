@@ -1,6 +1,6 @@
 .background-hilda {
     background: url('./source/fundo.png') no-repeat;
-    background-size: fill;
+    background-size: cover;
 }
 
 .camada1-hilda,
@@ -43,4 +43,15 @@
     height: 30%;
     background: url('./source/segundaCamada.png') no-repeat;
     background-size: fill;
+}
+
+.hilda-title {
+    font-size: clamp(3rem, 5dvw, 10rem);
+    animation: flashing .1s linear infinite 1s;
+}
+
+@media (orientation: portrait) {
+    .hilda-part {
+        transform: translateY(8dvh);
+    }
 }
