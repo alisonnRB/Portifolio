@@ -3,7 +3,9 @@ import './dragon.css';
 import Image from 'next/image';
 import arrow from './source/arow.png';
 
-import Background from './background';
+
+import background from './source/fundo.png';
+import CamadaRepeat from '../camadaRepeated';
 import Camada from '../camada';
 
 import quintaCamada from "./source/quintaCamada.png";
@@ -16,18 +18,26 @@ import Title from './title';
 import Castle from './castle';
 import Dragon from './dragon';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { viewContext } from "@/scripts/viewContext";
-
+import { useInView } from 'react-intersection-observer';
 
 export default function DragonCenarie() {
-    const { changeView, currentView } = useContext(viewContext)
+    const { changeView, currentView } = useContext(viewContext);
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 1,
+    });
+
+    useEffect(() => {
+        if (inView) changeView("dragon_intro");
+    }, [inView])
 
     return (
-        <section className='section-container'>
+        <section className='section-container' ref={ref}>
             <div className="h-full w-full relative overflow-hidden">
                 {/* fundo */}
-                <Background />
+                <CamadaRepeat container={"background-container"} img={background} section={"background"} zIndex={10} />
 
                 {/* camada5 */}
                 <Camada img={quintaCamada} camada="camada5" num={0} zIndex={20} bottom={40} />

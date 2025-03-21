@@ -31,7 +31,7 @@ export default function Dragon({ currentView, changeView }: { currentView: Strin
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (canvas && currentView == "dragon_intro") {
+        if (canvas) {
             if (isPortrait) {
                 canvas.style.height = "30dvh";
                 canvas.style.width = "calc(30dvh * 1.133)";
@@ -41,7 +41,7 @@ export default function Dragon({ currentView, changeView }: { currentView: Strin
             }
         }
 
-        if (animatinState == "suspension") {
+        if (animatinState == "suspension" && currentView == "loading") {
             setAnimationState('intro');
         }
 
@@ -56,7 +56,7 @@ export default function Dragon({ currentView, changeView }: { currentView: Strin
                 animation.current?.stopAnimation();
             };
         }
-    }, [animatinState]);
+    }, [animatinState, currentView]);
 
     useEffect(() => {
         if (animatinState == "idle" && canvasRef.current) {

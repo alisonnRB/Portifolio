@@ -11,7 +11,7 @@ const viewContext = createContext<View>({} as View);
 
 //provedor
 const ViewProvider = ({ children }: { children: React.ReactNode }) => {
-    const [currentView, setCurrentView] = useState<String>("dragon_intro");
+    const [currentView, setCurrentView] = useState<String>("loading");
 
     const changeView = (name: String) => {
         setCurrentView(name);
