@@ -47,11 +47,33 @@
 
 .hilda-title {
     font-size: clamp(3rem, 5dvw, 10rem);
+}
+
+.hilda-title-animation {
     animation: flashing .1s linear infinite 1s;
 }
 
 @media (orientation: portrait) {
     .hilda-part {
         transform: translateY(8dvh);
+    }
+}
+
+.hilda-canvas-intro {
+    animation: moveTo 1.5s linear;
+}
+
+.text-move {
+    animation: moveTo 1.5s linear;
+}
+
+
+@keyframes moveTo {
+    from {
+        transform: translateX(-200%);
+    }
+
+    to {
+        transform: translateX(0);
     }
 }

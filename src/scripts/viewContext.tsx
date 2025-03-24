@@ -18,6 +18,7 @@ const ViewProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     useEffect(() => {
+        console.log(currentView)
         const home = document.querySelector(".home");
         if (home instanceof HTMLElement) {
             if (currentView == "dragon_intro") home.style.overflow = "hidden";
