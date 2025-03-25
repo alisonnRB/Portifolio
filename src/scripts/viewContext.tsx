@@ -21,7 +21,7 @@ const ViewProvider = ({ children }: { children: React.ReactNode }) => {
         console.log(currentView)
         const home = document.querySelector(".home");
         if (home instanceof HTMLElement) {
-            if (currentView == "dragon_intro") home.style.overflow = "hidden";
+            if (currentView == "dragon_intro" || currentView == "hilda") home.style.overflow = "hidden";
             else home.style.overflow = "scroll";
         }
     }, [currentView])

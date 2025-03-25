@@ -1,25 +1,63 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ScrollViewer } from "@/scripts/ScrollViewer";
+
 import HildaIntro from "./hilda_intro";
 import HildaText from "./hildaText";
 import HildaExplosion from "./hilda_explosion";
 import HildaLoop from "./hilda_idle";
+import HildaClose from "./hilda_close";
+
+import Level from "./level";
 
 export default function Hilda({ currentView, changeView }: { currentView: String; changeView: (name: String) => void; }) {
-    const [text1, setText1] = useState<boolean>(false);
+    const [viewerController, setViewerController] = useState<boolean>(false);
+    const [inAnimation, setInAnimation] = useState<boolean>(false);
+
     const [hildaIntro, setHildaIntro] = useState<boolean>(false);
     const [hildaLoop, setHildaLoop] = useState<boolean>(false);
+    const [hildaClose, setHildaClose] = useState<boolean>(false);
 
-    /* verifica se deve iniciar, mostra texto1 e tira depois de 2 segundos, inicia proxima animação */
+    const [HildaExplosionIntro, setHildaExplosionIntro] = useState<boolean>(false);
+    const [HildaExplosionClose, setHildaExplosionClose] = useState<boolean>(false);
+
+    const [level, setLevel] = useState<number>(0);
+
+    const levelUp = (): void => {
+        if (inAnimation) return;
+        setLevel((prevState) => prevState + 1);
+        console.log(level)
+    };
+
+    const levelDown = (): void => {
+        if (inAnimation) return;
+        setLevel((prevState) => prevState - 1);
+        console.log(level)
+    }
+
+    /* seta o scrollerViewer */
     useEffect(() => {
-        if (currentView !== "hilda") return;
+        if (viewerController) return;
 
-        setText1(true);
+        new ScrollViewer({
+            callbackUp: levelDown,
+            callbackDown: levelUp,
+        });
+
+        setViewerController(true)
+    }, [])
+
+    console.log(level)
+
+    /* verifica se deve iniciar, mostra texto1 */
+    useEffect(() => {
+        if (currentView !== "hilda" && level !== 0) return;
+
+        setInAnimation(true);
 
         const timeOut = setTimeout(() => {
-            setText1(false);
-            setHildaIntro(true);
+            setInAnimation(false)
         }, 2000);
 
         return () => { clearTimeout(timeOut) };
@@ -27,21 +65,71 @@ export default function Hilda({ currentView, changeView }: { currentView: String
     }, [currentView]);
 
     useEffect(() => {
+        switch (level) {
+            case 1:
+                setHildaIntro(true);
+                return
+
+            case 2:
+                setHildaClose(true);
+                return
+
+            case 3:
+                return
+        }
+    }, [level])
+
+    /* verifica o fim o init, inica o idle da hilda dps 2.1s, seta como sem animação */
+    useEffect(() => {
         if (!hildaIntro) return;
+
+        setInAnimation(true);
+        setHildaExplosionIntro(true)
 
         const timeOut = setTimeout(() => {
             setHildaIntro(false);
             setHildaLoop(true);
+            setInAnimation(false);
         }, 2100)
+
+        return () => { clearInterval(timeOut) }
     }, [hildaIntro])
+
+    useEffect(() => {
+        if (!hildaClose) return;
+
+        setHildaExplosionIntro(false)
+        setHildaExplosionClose(true);
+
+        const timeOut = setTimeout(() => {
+            setLevel(3);
+            setHildaLoop(false);
+        }, 1600);
+
+        return () => { clearTimeout(timeOut) }
+
+    }, [hildaClose])
 
     return (
         <>
-            {text1 ? <HildaText title={"WHO AM I?"} text={"Keep scrolling to find out"} apair={false} /> : <></>}
-            {hildaIntro || hildaLoop ? <span><HildaText title={"A SOFTWARE ENGINEER"} text={"I'm a software engineer passionate about crafting intuitive and creative solutions. I blend clean code with thoughtful design, always striving to build seamless digital experiences."} apair={true} /></span> : <></>}
+            {/* Level 0 */}
+
+            {level == 0 ? <HildaText title={"WHO AM I?"} text={"Keep scrolling to find out"} apair={false} /> : <></>}
+
+            {/* Level 1*/}
+
+            {level > 0 && level <= 3 ? <div className={`${HildaExplosionClose ? "text-close" : ""}`}><HildaText title={"A SOFTWARE ENGINEER"} text={"I'm a software engineer passionate about crafting intuitive and creative solutions. I blend clean code with thoughtful design, always striving to build seamless digital experiences."} apair={true} /></div> : <></>}
             {hildaIntro ? <HildaIntro /> : <></>}
-            {hildaIntro || hildaLoop ? <HildaExplosion ms={2000} /> : <></>}
-            {hildaLoop ? <HildaLoop /> : <></>}
+            {HildaExplosionIntro ? <HildaExplosion ms={2000} bottom={7} key={1} /> : <></>}
+            {hildaLoop ? <HildaLoop close={hildaClose} /> : <></>}
+
+            {/* Transition */}
+            {level == 3 ? <HildaClose /> : <></>}
+            {HildaExplosionClose ? <HildaExplosion ms={1500} bottom={40} key={2} /> : <></>}
+
+            {/* Level 2 */}
+
+            {<Level level={1} />}
         </>
     );
 }

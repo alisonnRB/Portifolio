@@ -67,8 +67,14 @@
     animation: moveTo 2s linear;
 }
 
-.hilda-canvas-idle {
-    animation: moveIdle 1.5s linear infinite alternate;
+.text-close {
+    position: relative;
+    top: 10dvh;
+    animation: moveTo 1s both reverse 4s;
+}
+
+.hilda-canvas-close {
+    animation: moveTo 1s both reverse 2s;
 }
 
 @keyframes moveTo {
@@ -81,12 +87,22 @@
     }
 }
 
-@keyframes moveIdle {
-    0% {
-        transform: translateY(0);
+.point::before {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    z-index: -1;
+    height: 3.5dvh;
+    width: 3.5dvh;
+    border-radius: 50%;
+    transform: translate(-20%, -22%);
+    border: solid .4vh black;
+}
+
+@media (orientation: portrait) {
+    .text-close {
+        top: 20dvh;
+        animation-delay: 3.5s;
     }
 
-    100% {
-        transform: translateY(-80%);
-    }
 }

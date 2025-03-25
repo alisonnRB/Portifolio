@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Animations } from "@/scripts/Animations";
 
-export default function HildaExplosion({ ms }: { ms: number }) {
+export default function HildaExplosion({ ms, bottom }: { ms: number; bottom: number; }) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const animation = useRef<Animations | null>(null);
     const [isPortrait, setIsPortrait] = useState<boolean>(false);
@@ -34,8 +34,8 @@ export default function HildaExplosion({ ms }: { ms: number }) {
                 canvas.style.height = "40dvh";
                 canvas.style.width = "calc(40dvh * 1.083)";
             } else {
-                canvas.style.height = "60dvh";
-                canvas.style.width = "calc(60dvh * 1.083)";
+                canvas.style.height = "75dvh";
+                canvas.style.width = "calc(75dvh * 1.083)";
             }
         }
 
@@ -61,7 +61,7 @@ export default function HildaExplosion({ ms }: { ms: number }) {
 
     return (
         <>
-            {animatinState != "final" ? <canvas ref={canvasRef} className="hilda-canvas-intro absolute z-40 bottom-[12%] right-0 portrait:right-0" style={{ height: '60dvh', width: 'calc(60dvh * 1.083)' }}>
+            {animatinState != "final" ? <canvas ref={canvasRef} className={`absolute z-40 right-[-4%] portrait:right-[-30%]`} style={{ height: '75dvh', width: 'calc(75dvh * 1.083)', bottom: `${bottom + 5}%` }}>
             </canvas> : <></>}
         </>
     )
