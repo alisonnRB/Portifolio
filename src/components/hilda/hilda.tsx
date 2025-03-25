@@ -8,6 +8,7 @@ import HildaText from "./hildaText";
 import HildaExplosion from "./hilda_explosion";
 import HildaLoop from "./hilda_idle";
 import HildaClose from "./hilda_close";
+import HildaGemini from "./hilda_gemini";
 
 import Level from "./level";
 
@@ -18,6 +19,8 @@ export default function Hilda({ currentView, changeView }: { currentView: String
     const [hildaIntro, setHildaIntro] = useState<boolean>(false);
     const [hildaLoop, setHildaLoop] = useState<boolean>(false);
     const [hildaClose, setHildaClose] = useState<boolean>(false);
+
+    const [geminiLoop, setGeminiLoop] = useState<boolean>(false);
 
     const [HildaExplosionIntro, setHildaExplosionIntro] = useState<boolean>(false);
     const [HildaExplosionClose, setHildaExplosionClose] = useState<boolean>(false);
@@ -75,6 +78,15 @@ export default function Hilda({ currentView, changeView }: { currentView: String
                 return
 
             case 3:
+                const TimeOut = (setTimeout(() => {
+                    if (level != 3) return;
+                    setLevel((prevState) => prevState + 1);
+                }, 3000))
+
+                return () => { clearTimeout(TimeOut) }
+
+            case 4:
+                setHildaIntro(true)
                 return
         }
     }, [level])
@@ -85,10 +97,16 @@ export default function Hilda({ currentView, changeView }: { currentView: String
 
         setInAnimation(true);
         setHildaExplosionIntro(true)
+        setHildaExplosionClose(false)
 
         const timeOut = setTimeout(() => {
             setHildaIntro(false);
-            setHildaLoop(true);
+            if (level <= 3) {
+                setHildaLoop(true);
+            } else if (level <= 6) {
+                setGeminiLoop(true);
+            }
+
             setInAnimation(false);
         }, 2100)
 
@@ -102,7 +120,7 @@ export default function Hilda({ currentView, changeView }: { currentView: String
         setHildaExplosionClose(true);
 
         const timeOut = setTimeout(() => {
-            setLevel(3);
+            setLevel((prevState) => prevState + 1);
             setHildaLoop(false);
         }, 1600);
 
@@ -128,6 +146,8 @@ export default function Hilda({ currentView, changeView }: { currentView: String
             {HildaExplosionClose ? <HildaExplosion ms={1500} bottom={40} key={2} /> : <></>}
 
             {/* Level 2 */}
+            {level > 3 && level <= 6 ? <div className={`${HildaExplosionClose ? "text-close" : ""}`}><HildaText title={"A CREATIVE COFFEE LOVER"} text={"Fueled by coffee and creativity, I craft playful yet polished digital experiences. Just like in a good game, every pixel and line of code has a purpose — and a bit of magic."} apair={true} /></div> : <></>}
+            {geminiLoop ? <HildaGemini close={hildaClose} /> : <></>}
 
             {<Level level={1} />}
         </>
