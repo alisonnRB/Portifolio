@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react";
 import HildaIntro from "./hilda_intro";
 import HildaText from "./hildaText";
+import HildaExplosion from "./hilda_explosion";
+import HildaLoop from "./hilda_idle";
 
 export default function Hilda({ currentView, changeView }: { currentView: String; changeView: (name: String) => void; }) {
     const [text1, setText1] = useState<boolean>(false);
     const [hildaIntro, setHildaIntro] = useState<boolean>(false);
+    const [hildaLoop, setHildaLoop] = useState<boolean>(false);
 
     /* verifica se deve iniciar, mostra texto1 e tira depois de 2 segundos, inicia proxima animação */
     useEffect(() => {
@@ -23,11 +26,22 @@ export default function Hilda({ currentView, changeView }: { currentView: String
 
     }, [currentView]);
 
+    useEffect(() => {
+        if (!hildaIntro) return;
+
+        const timeOut = setTimeout(() => {
+            setHildaIntro(false);
+            setHildaLoop(true);
+        }, 2100)
+    }, [hildaIntro])
+
     return (
         <>
             {text1 ? <HildaText title={"WHO AM I?"} text={"Keep scrolling to find out"} apair={false} /> : <></>}
-            {hildaIntro ? <span><HildaText title={"A SOFTWARE ENGINEER"} text={"I'm a software engineer passionate about crafting intuitive and creative solutions. I blend clean code with thoughtful design, always striving to build seamless digital experiences."} apair={true} /></span> : <></>}
+            {hildaIntro || hildaLoop ? <span><HildaText title={"A SOFTWARE ENGINEER"} text={"I'm a software engineer passionate about crafting intuitive and creative solutions. I blend clean code with thoughtful design, always striving to build seamless digital experiences."} apair={true} /></span> : <></>}
             {hildaIntro ? <HildaIntro /> : <></>}
+            {hildaIntro || hildaLoop ? <HildaExplosion ms={2000} /> : <></>}
+            {hildaLoop ? <HildaLoop /> : <></>}
         </>
     );
 }

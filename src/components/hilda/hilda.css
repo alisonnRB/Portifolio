@@ -60,20 +60,33 @@
 }
 
 .hilda-canvas-intro {
-    animation: moveTo 1.5s linear;
+    animation: moveTo 2s linear;
 }
 
 .text-move {
-    animation: moveTo 1.5s linear;
+    animation: moveTo 2s linear;
 }
 
+.hilda-canvas-idle {
+    animation: moveIdle 1.5s linear infinite alternate;
+}
 
 @keyframes moveTo {
     from {
-        transform: translateX(-200%);
+        transform: translateX(-600%);
     }
 
     to {
         transform: translateX(0);
+    }
+}
+
+@keyframes moveIdle {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-80%);
     }
 }

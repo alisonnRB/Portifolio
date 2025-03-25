@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Animations } from "@/scripts/Animations";
 
-export default function HildaExplosion({ ms }: { ms: number }) {
+export default function HildaLoop() {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const animation = useRef<Animations | null>(null);
     const [isPortrait, setIsPortrait] = useState<boolean>(false);
@@ -31,27 +31,24 @@ export default function HildaExplosion({ ms }: { ms: number }) {
         const canvas = canvasRef.current;
         if (canvas) {
             if (isPortrait) {
-                canvas.style.height = "40dvh";
-                canvas.style.width = "calc(40dvh * 1.083)";
+                canvas.style.height = "18dvh";
+                canvas.style.width = "calc(18dvh * 0.911)";
             } else {
-                canvas.style.height = "60dvh";
-                canvas.style.width = "calc(60dvh * 1.083)";
+                canvas.style.height = "40dvh";
+                canvas.style.width = "calc(40dvh * 0.911)";
             }
         }
 
         if (animatinState == "suspension") {
-
-            const timeOut = setTimeout(() => { setAnimationState('explode'); }, ms)
-
-            return () => { clearInterval(timeOut) };
+            setAnimationState('intro');
         }
 
     }, [isPortrait, animatinState]);
 
     useEffect(() => {
-        if (animatinState == "explode" && canvasRef.current) {
-            animation.current = new Animations(canvasRef.current, '/resources/hilda_explosion_spriteSheet.png', 15);
-            animation.current.loop(false, 150, () => { setAnimationState("final") });
+        if (animatinState == "intro" && canvasRef.current) {
+            animation.current = new Animations(canvasRef.current, '/resources/hilda_idle_spriteSheet.png', 21);
+            animation.current.loop(true, 100);
 
             return () => {
                 animation.current?.stopAnimation();
@@ -61,8 +58,8 @@ export default function HildaExplosion({ ms }: { ms: number }) {
 
     return (
         <>
-            {animatinState != "final" ? <canvas ref={canvasRef} className="hilda-canvas-intro absolute z-40 bottom-[12%] right-0 portrait:right-0" style={{ height: '60dvh', width: 'calc(60dvh * 1.083)' }}>
-            </canvas> : <></>}
+            <canvas ref={canvasRef} className="hilda-canvas-idle absolute z-30 bottom-[20%] right-[5%] portrait:right-0" style={{ height: '40dvh', width: 'calc(40dvh * 0.911)' }}>
+            </canvas>
         </>
     )
 }
