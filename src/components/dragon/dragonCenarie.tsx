@@ -34,7 +34,7 @@ export default function DragonCenarie() {
     }, [inView])
 
     return (
-        <section className='section-container' ref={ref}>
+        <section className='section-container dragons' ref={ref}>
             <div className="h-full w-full relative overflow-hidden">
                 {/* fundo */}
                 <CamadaRepeat container={"background-container"} img={background} section={"background"} zIndex={10} />

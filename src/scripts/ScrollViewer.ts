@@ -1,19 +1,20 @@
-export class ScrollViewer {
-    callbackUp: () => void;
-    callbackDown: () => void;
+import { HildaLevel } from "./HildaLevel";
+
+export class ScrollViewer extends HildaLevel {
     lastTouchY: number = 0;
     lastExecutionTime: number = 0;
     threshold: number = 40;
-    debounceTime: number = 2300;
+    debounceTime: number = 2000;
 
-    constructor({ callbackUp, callbackDown }: { callbackUp: () => void; callbackDown: () => void; }) {
-        this.callbackUp = callbackUp;
-        this.callbackDown = callbackDown;
+    constructor({ state }: { state: (num: number) => void }) {
+        super({ state })
 
         window.addEventListener("wheel", this.handleScroll.bind(this));
         window.addEventListener("touchstart", this.handleTouchStart.bind(this));
         window.addEventListener("touchmove", this.handleTouchMove.bind(this));
         window.addEventListener("keydown", this.handleKeydown.bind(this));
+
+        this.canExecute();
     }
 
     private canExecute() {
@@ -29,7 +30,7 @@ export class ScrollViewer {
         if (!this.canExecute()) return;
 
         if (Math.abs(event.deltaY) >= this.threshold) {
-            event.deltaY > 0 ? this.callbackDown() : this.callbackUp();
+            event.deltaY > 0 ? this.levelDown() : this.levelUp();
         }
     };
 
@@ -44,7 +45,7 @@ export class ScrollViewer {
         const delta = Math.abs(currentY - this.lastTouchY);
 
         if (delta >= this.threshold) {
-            currentY < this.lastTouchY ? this.callbackDown() : this.callbackUp();
+            currentY < this.lastTouchY ? this.levelDown : this.levelUp;
             this.lastTouchY = currentY;
         }
     };
@@ -53,10 +54,10 @@ export class ScrollViewer {
         if (!this.canExecute()) return;
 
         if (event.key === "ArrowDown" || event.key === "PageDown") {
-            this.callbackDown();
+            this.levelDown;
         }
         if (event.key === "ArrowUp" || event.key === "PageUp") {
-            this.callbackUp();
+            this.levelUp;
         }
     };
 }

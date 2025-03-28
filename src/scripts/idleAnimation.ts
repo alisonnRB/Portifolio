@@ -1,17 +1,12 @@
 export class IdleAnimation {
-    private canvas: HTMLCanvasElement;
     private position: number = 0;
     private direction: number = 1;
     private velocity: number = 0.5;
     private animationFrame: number | null = null;
     private isMovingToEnd: boolean = false;
 
-    constructor(canvasReference: HTMLCanvasElement) {
-        this.canvas = canvasReference;
-        this.startAnimation();
-    }
+    startAnimation(canvas: HTMLCanvasElement) {
 
-    private startAnimation() {
         const animate = () => {
             if (this.isMovingToEnd) return;
 
@@ -19,7 +14,7 @@ export class IdleAnimation {
             if (this.position >= 0) this.direction = -1;
 
             this.position += this.direction * this.velocity;
-            this.updateTransform();
+            this.updateTransform(canvas);
 
             this.animationFrame = requestAnimationFrame(animate);
         };
@@ -27,11 +22,11 @@ export class IdleAnimation {
         this.animationFrame = requestAnimationFrame(animate);
     }
 
-    private updateTransform() {
-        this.canvas.style.transform = `translateY(${this.position}dvh)`;
+    private updateTransform(canvas: HTMLCanvasElement) {
+        canvas.style.transform = `translateY(${this.position}dvh)`;
     }
 
-    public moveToEnd() {
+    public moveToEnd(canvas: HTMLCanvasElement) {
         if (this.isMovingToEnd) return;
         this.isMovingToEnd = true;
 
@@ -43,7 +38,7 @@ export class IdleAnimation {
             if (progress >= 1) return;
             progress += 0.02;
             this.position = startPos + (endPos - startPos) * progress;
-            this.updateTransform();
+            this.updateTransform(canvas);
             requestAnimationFrame(moveTo);
         };
 
@@ -54,6 +49,7 @@ export class IdleAnimation {
         if (this.animationFrame) {
             cancelAnimationFrame(this.animationFrame);
             this.animationFrame = null;
+            this.position = 0
         }
     }
 }

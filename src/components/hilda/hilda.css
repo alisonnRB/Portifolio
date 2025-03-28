@@ -70,16 +70,16 @@
 .text-close {
     position: relative;
     top: 10dvh;
-    animation: moveTo 1s both reverse 4s;
+    animation: moveTo 1s both reverse 2s;
 }
 
 .hilda-canvas-close {
-    animation: moveTo 1s both reverse 2s;
+    animation: moveTo 3.5s both reverse;
 }
 
 @keyframes moveTo {
     from {
-        transform: translateX(-600%);
+        transform: translateX(-150dvw);
     }
 
     to {
@@ -102,7 +102,6 @@
 @media (orientation: portrait) {
     .text-close {
         top: 20dvh;
-        animation-delay: 3.5s;
+        animation-delay: 1s;
     }
-
 }

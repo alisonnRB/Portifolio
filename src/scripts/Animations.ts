@@ -1,4 +1,6 @@
-export class Animations {
+import { IdleAnimation } from "./idleAnimation";
+
+export class Animations extends IdleAnimation {
     positionX: number;
     positionY: number;
 
@@ -20,6 +22,7 @@ export class Animations {
     animationInterval: NodeJS.Timeout | null = null;
 
     constructor(canvasReference: HTMLCanvasElement, src: string, spriteNumber: number) {
+        super()
         this.positionX = 0;
         this.positionY = 0;
         this.canvas = canvasReference;
@@ -98,5 +101,12 @@ export class Animations {
             clearInterval(this.animationInterval);
             this.animationInterval = null;
         }
+        if (this.context) {
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+    }
+
+    idle() {
+        this.startAnimation(this.canvas)
     }
 }
