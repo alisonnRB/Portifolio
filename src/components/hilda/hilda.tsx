@@ -19,6 +19,7 @@ export default function Hilda({ currentView, changeView }: { currentView: String
     const [text1, setText1] = useState<boolean>(false);
     const [text2, setText2] = useState<boolean>(false);
     const [text3, setText3] = useState<boolean>(false);
+    const [text4, setText4] = useState<boolean>(false);
     const [close, setClose] = useState<boolean>(false);
 
     useEffect(() => {
@@ -81,7 +82,27 @@ export default function Hilda({ currentView, changeView }: { currentView: String
                 break;
 
             case 2:
-                if (!side) {
+                if (side) {
+                    hilda.current?.hildaMoonUntransform();
+                    await delay(2500);
+
+                    hilda.current?.hildaIdle()
+                    await delay(1000);
+
+                    hilda.current?.moveToClose()
+                    await delay(1500);
+
+                    hilda.current.hildaClose();
+                    setClose(true);
+                    await delay(4500);
+
+                    hilda.current.hildaApair();
+                    setText3(false);
+                    setClose(false);
+                    setText4(true);
+
+
+                } else {
                     hilda.current.moveToClose();
                     await delay(1500);
                     hilda.current.hildaClose();
@@ -95,6 +116,25 @@ export default function Hilda({ currentView, changeView }: { currentView: String
 
                     await delay(2000);
                     hilda.current.hildaGeminiIdle();
+                }
+                break;
+            case 3:
+                if (side) {
+
+                } else {
+                    hilda.current.moveToClose();
+                    await delay(1500);
+                    hilda.current.hildaClose();
+                    setClose(true);
+
+                    await delay(4500);
+                    hilda.current.hildaApair();
+                    setText3(false);
+                    setClose(false);
+                    setText4(true);
+
+                    await delay(2000);
+                    hilda.current.hildaMoonTransform();
                 }
                 break;
         }
@@ -122,6 +162,9 @@ export default function Hilda({ currentView, changeView }: { currentView: String
 
             {/* Level 2 */}
             {text3 ? <div className={`${close ? "text-close" : ""}`}><HildaText title={"A CREATIVE COFFEE LOVER"} text={"Fueled by coffee and creativity, I craft playful yet polished digital experiences. Just like in a good game, every pixel and line of code has a purpose — and a bit of magic."} apair={true} /></div> : <></>}
+
+            {/* Level 3 */}
+            {text4 ? <div className={`${close ? "text-close" : ""}`}><HildaText title={"WHAT I HAVE BEEN DOING?"} text={"I've been on a journey of crafting code, designing ideas, and building digital experiences. From creative personal projects to exciting collaborations, every line of code is a step forward — and the adventure is just beginning"} apair={true} /></div> : <></>}
 
             {<Level level={1} />}
         </>

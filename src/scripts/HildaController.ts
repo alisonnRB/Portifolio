@@ -60,8 +60,8 @@ export class HildaController extends ScrollViewer {
 
         this.animationBomb = new Animations(this.canvasBomb, "/resources/hilda_explosion_spriteSheet.png", 15);
 
-        this.cleanCanvas();
         this.mainElement.appendChild(this.canvasBomb);
+        this.cleanCanvas();
 
         this.animationBomb.loop(false, 150, () => {
             this.animationBomb.stopAnimation();
@@ -124,7 +124,58 @@ export class HildaController extends ScrollViewer {
         this.animation.idle();
     }
 
-    cleanCanvas() {
+    hildaMoonTransform() {
+        this.hildaBomb();
+
+        this.LandscapeCanvasSize = 100;
+        this.canvasRatio = 0.9349;
+        this.PortraitCanvasSize = 23;
+        this.bottomBomb = 7;
+
+        this.sizeHilda()
+
+        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0");
+        this.animation = new Animations(this.canvas, "/resources/hilda_transform_spriteSheet.png", 33);
+
+        this.mainElement.appendChild(this.canvas);
+        this.animation.loop(false, 100, () => { this.hildaMoonIdle() });
+    }
+
+    hildaMoonUntransform() {
+        this.cleanCanvas(true);
+
+        this.LandscapeCanvasSize = 100;
+        this.canvasRatio = 0.9349;
+        this.PortraitCanvasSize = 23;
+        this.bottomBomb = 7;
+
+        this.sizeHilda()
+
+        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0");
+        this.animation = new Animations(this.canvas, "/resources/hilda_Untransform_spriteSheet.png", 33);
+
+        this.mainElement.appendChild(this.canvas);
+        this.animation.loop(false, 100, () => { });
+    }
+
+    hildaMoonIdle() {
+        this.cleanCanvas(true)
+
+        this.LandscapeCanvasSize = 100;
+        this.canvasRatio = 0.9349;
+        this.PortraitCanvasSize = 23;
+        this.bottomBomb = 7;
+
+        this.sizeHilda()
+
+        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0");
+        this.animation = new Animations(this.canvas, "/resources/hilda_lua_idle_spriteSheet.png", 16);
+
+        this.mainElement.appendChild(this.canvas);
+        this.animation.loop(true, 100);
+    }
+
+    cleanCanvas(continuos: boolean = false) {
         if (this.canvas.parentElement === this.mainElement) {
             this.canvas.className = "";
             this.mainElement.removeChild(this.canvas);
@@ -132,7 +183,7 @@ export class HildaController extends ScrollViewer {
 
         try {
             this.animation.stop();
-            this.animation.stopAnimation();
+            this.animation.stopAnimation(continuos);
         } catch (e) {
         }
     }

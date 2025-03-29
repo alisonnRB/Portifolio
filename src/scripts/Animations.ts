@@ -96,12 +96,12 @@ export class Animations extends IdleAnimation {
         }, rate);
     }
 
-    stopAnimation() {
+    stopAnimation(continuos: boolean = false) {
         if (this.animationInterval) {
             clearInterval(this.animationInterval);
             this.animationInterval = null;
         }
-        if (this.context) {
+        if (this.context && !continuos) {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         }
     }
