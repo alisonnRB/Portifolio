@@ -20,6 +20,7 @@ export default function Hilda({ currentView, changeView }: { currentView: String
     const [text2, setText2] = useState<boolean>(false);
     const [text3, setText3] = useState<boolean>(false);
     const [text4, setText4] = useState<boolean>(false);
+    const [text5, setText5] = useState<boolean>(false);
     const [close, setClose] = useState<boolean>(false);
 
     useEffect(() => {
@@ -97,9 +98,12 @@ export default function Hilda({ currentView, changeView }: { currentView: String
                     await delay(4500);
 
                     hilda.current.hildaApair();
-                    setText3(false);
+                    setText4(false);
                     setClose(false);
-                    setText4(true);
+                    setText3(true);
+
+                    await delay(2000);
+                    hilda.current.hildaGeminiIdle();
 
 
                 } else {
@@ -120,7 +124,13 @@ export default function Hilda({ currentView, changeView }: { currentView: String
                 break;
             case 3:
                 if (side) {
+                    setClose(true);
+                    await delay(4500);
+                    setText5(false);
+                    setClose(false)
+                    setText4(true);
 
+                    hilda.current.hildaMoonIdle();
                 } else {
                     hilda.current.moveToClose();
                     await delay(1500);
@@ -137,6 +147,14 @@ export default function Hilda({ currentView, changeView }: { currentView: String
                     hilda.current.hildaMoonTransform();
                 }
                 break;
+            case 4:
+                if (side) {
+
+                } else {
+                    hilda.current.hildaDie()
+                    setText4(false);
+                    setText5(true);
+                }
         }
 
         hilda.current.setInAnimation(false);
@@ -165,6 +183,9 @@ export default function Hilda({ currentView, changeView }: { currentView: String
 
             {/* Level 3 */}
             {text4 ? <div className={`${close ? "text-close" : ""}`}><HildaText title={"WHAT I HAVE BEEN DOING?"} text={"I've been on a journey of crafting code, designing ideas, and building digital experiences. From creative personal projects to exciting collaborations, every line of code is a step forward — and the adventure is just beginning"} apair={true} /></div> : <></>}
+
+            {/* Level 4 */}
+            {text5 ? <div className={`${close ? "text-close" : ""}`}><HildaText title={"WHAT CAN I DO?"} text={"Need a creative coder? I build interactive websites, design seamless user experiences, and solve digital puzzles — all with a sprinkle of creativity and clean code."} apair={true} /></div> : <></>}
 
             {<Level level={1} />}
         </>

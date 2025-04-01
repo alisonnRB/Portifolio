@@ -175,6 +175,23 @@ export class HildaController extends ScrollViewer {
         this.animation.loop(true, 100);
     }
 
+    hildaDie() {
+        this.cleanCanvas(true)
+
+        this.LandscapeCanvasSize = 100;
+        this.canvasRatio = 0.9349;
+        this.PortraitCanvasSize = 23;
+        this.bottomBomb = 7;
+
+        this.sizeHilda()
+
+        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0");
+        this.animation = new Animations(this.canvas, "/resources/hilda_die_spriteSheet.png", 16);
+
+        this.mainElement.appendChild(this.canvas);
+        this.animation.loop(true, 100);
+    }
+
     cleanCanvas(continuos: boolean = false) {
         if (this.canvas.parentElement === this.mainElement) {
             this.canvas.className = "";
