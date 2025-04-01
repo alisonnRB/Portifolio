@@ -4,6 +4,7 @@ import { ViewProvider } from "@/scripts/viewContext";
 
 import DragonCenarie from "@/components/dragon/dragonCenarie";
 import HildaCenarie from "@/components/hilda/hildaCenarie";
+import MyWork from "@/components/myWorks/myWork";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
 
         <DragonCenarie />
         <HildaCenarie />
+        <MyWork />
 
       </div>
 

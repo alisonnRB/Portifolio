@@ -3,16 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import { HildaController } from "@/scripts/HildaController";
 
-import HildaIntro from "./hilda_intro";
 import HildaText from "./hildaText";
-import HildaExplosion from "./hilda_explosion";
-import HildaLoop from "./hilda_idle";
-import HildaClose from "./hilda_close";
-import HildaGemini from "./hilda_gemini";
 
 import Level from "./level";
 
-export default function Hilda({ currentView, changeView }: { currentView: String; changeView: (name: String) => void; }) {
+export default function Hilda({ currentView, changeView, toNext }: { currentView: string; changeView: (name: string) => void; toNext: (index: number) => void }) {
     const hilda = useRef<HildaController | null>(null);
     const [level, setLevel] = useState<number | null>(null);
 
@@ -25,7 +20,7 @@ export default function Hilda({ currentView, changeView }: { currentView: String
 
     useEffect(() => {
         if (hilda.current instanceof HildaController) return;
-        hilda.current = new HildaController({ state: setLevel });
+        hilda.current = new HildaController({ state: setLevel, currentView: currentView, toNext: toNext });
     }, [hilda.current]);
 
     function delay(ms: number) {
@@ -122,6 +117,7 @@ export default function Hilda({ currentView, changeView }: { currentView: String
                     hilda.current.hildaGeminiIdle();
                 }
                 break;
+
             case 3:
                 if (side) {
                     setClose(true);
@@ -147,6 +143,7 @@ export default function Hilda({ currentView, changeView }: { currentView: String
                     hilda.current.hildaMoonTransform();
                 }
                 break;
+
             case 4:
                 if (side) {
 
@@ -155,6 +152,7 @@ export default function Hilda({ currentView, changeView }: { currentView: String
                     setText4(false);
                     setText5(true);
                 }
+                break;
         }
 
         hilda.current.setInAnimation(false);
@@ -169,6 +167,11 @@ export default function Hilda({ currentView, changeView }: { currentView: String
             hilda.current?.setInAnimation(false);
         };
     }, [level]);
+
+    useEffect(() => {
+        if (!hilda.current) return;
+        hilda.current?.updateCurrentView(currentView)
+    }, [currentView])
 
     return (
         <>

@@ -44,3 +44,8 @@ body {
   left: 0;
   scroll-snap-align: initial;
 }
+
+.section-container.non {
+  position: relative;
+  scroll-snap-align: none;
+}

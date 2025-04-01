@@ -6,8 +6,8 @@ export class ScrollViewer extends HildaLevel {
     threshold: number = 40;
     debounceTime: number = 2000;
 
-    constructor({ state }: { state: (num: number) => void }) {
-        super({ state })
+    constructor({ state, currentView, toNext }: { state: (num: number) => void; currentView: string; toNext: (index: number) => void }) {
+        super({ state, currentView, toNext })
 
         window.addEventListener("wheel", this.handleScroll.bind(this));
         window.addEventListener("touchstart", this.handleTouchStart.bind(this));

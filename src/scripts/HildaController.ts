@@ -21,8 +21,8 @@ export class HildaController extends ScrollViewer {
 
     isPortrait: boolean = false;
 
-    constructor({ state }: { state: (num: number) => void }) {
-        super({ state });
+    constructor({ state, currentView, toNext }: { state: (num: number) => void; currentView: string; toNext: (index: number) => void }) {
+        super({ state, currentView, toNext });
         const element = document.querySelector(".background-hilda");
         this.mainElement = element as HTMLDivElement;
         this.canvas = document.createElement('canvas');

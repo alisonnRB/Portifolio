@@ -23,18 +23,18 @@ import { viewContext } from "@/scripts/viewContext";
 import { useInView } from 'react-intersection-observer';
 
 export default function DragonCenarie() {
-    const { changeView, currentView } = useContext(viewContext);
+    const { changeView, currentView, toNext } = useContext(viewContext);
     const { ref, inView } = useInView({
-        triggerOnce: true,
+        triggerOnce: false,
         threshold: 1,
     });
 
     useEffect(() => {
-        if (inView) changeView("dragon_intro");
+        if (inView) changeView("dragon");
     }, [inView])
 
     return (
-        <section className='section-container dragons' ref={ref}>
+        <section className='section-container non dragons' ref={ref}>
             <div className="h-full w-full relative overflow-hidden">
                 {/* fundo */}
                 <CamadaRepeat container={"background-container"} img={background} section={"background"} zIndex={10} />
@@ -75,7 +75,7 @@ export default function DragonCenarie() {
                 <Dragon currentView={currentView} changeView={changeView} />
 
                 {/* Title */}
-                {currentView == "dragon_intro" ? <Title /> : <></>}
+                {currentView == "dragon" ? <Title /> : <></>}
 
                 {/* To bottom */}
                 <Image
@@ -83,6 +83,7 @@ export default function DragonCenarie() {
                     className="absolute z-90 arrow bottom-[3%] left-[50%] cursor-pointer"
                     alt="arrow to bottom"
                     priority
+                    onClick={() => { toNext(0) }}
                 />
             </div>
         </section>

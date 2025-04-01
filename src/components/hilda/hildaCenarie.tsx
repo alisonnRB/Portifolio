@@ -17,9 +17,9 @@ import { useInView } from "react-intersection-observer";
 import { viewContext } from "@/scripts/viewContext";
 
 export default function HildaCenarie() {
-    const { currentView, changeView } = useContext(viewContext)
+    const { currentView, changeView, toNext } = useContext(viewContext)
     const { ref, inView } = useInView({
-        triggerOnce: true,
+        triggerOnce: false,
         threshold: 1,
     });
 
@@ -45,7 +45,7 @@ export default function HildaCenarie() {
                 <Camada img={quartaCamada} camada="camada4-hilda" num={0} zIndex={50} bottom={-10} />
 
                 {/* hilda */}
-                {currentView == "hilda" ? <Hilda currentView={currentView} changeView={changeView} /> : <></>}
+                {currentView == "hilda" ? <Hilda currentView={currentView} changeView={changeView} toNext={toNext} /> : <></>}
             </div>
         </section>
     );
