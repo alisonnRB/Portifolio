@@ -12,8 +12,8 @@ export default function Home() {
 
       <div className="home overflow-x-hidden overflow-y-scroll h-[100dvh]">
 
-        <DragonCenarie />
-        <HildaCenarie />
+        {/* <DragonCenarie />
+        <HildaCenarie /> */}
         <MyWork />
 
       </div>

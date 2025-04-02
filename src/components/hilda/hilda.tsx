@@ -19,9 +19,17 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
     const [close, setClose] = useState<boolean>(false);
 
     useEffect(() => {
-        if (hilda.current instanceof HildaController) return;
-        hilda.current = new HildaController({ state: setLevel, currentView: currentView, toNext: toNext });
-    }, [hilda.current]);
+        if (hilda.current) {
+            hilda.current.destroy();  // Destrói qualquer instância anterior
+            hilda.current = null;
+        }
+        hilda.current = new HildaController({ state: setLevel, currentView, toNext });
+
+        return () => {
+            hilda.current?.destroy();
+            hilda.current = null;
+        };
+    }, [currentView])
 
     function delay(ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -170,7 +178,7 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
 
     useEffect(() => {
         if (!hilda.current) return;
-        hilda.current?.updateCurrentView(currentView)
+        hilda.current?.updateCurrentView(currentView);
     }, [currentView])
 
     return (
@@ -190,7 +198,12 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
             {/* Level 4 */}
             {text5 ? <div className={`${close ? "text-close" : ""}`}><HildaText title={"WHAT CAN I DO?"} text={"Need a creative coder? I build interactive websites, design seamless user experiences, and solve digital puzzles — all with a sprinkle of creativity and clean code."} apair={true} /></div> : <></>}
 
-            {<Level level={1} />}
+            {<Level level={level} callback={() => {
+                hilda.current?.cleanCanvas();
+                hilda.current?.destroy();
+                hilda.current = null;
+                toNext(1);
+            }} />}
         </>
     );
 }

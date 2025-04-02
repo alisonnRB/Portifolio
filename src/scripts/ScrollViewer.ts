@@ -6,8 +6,8 @@ export class ScrollViewer extends HildaLevel {
     threshold: number = 40;
     debounceTime: number = 2000;
 
-    constructor({ state, currentView, toNext }: { state: (num: number) => void; currentView: string; toNext: (index: number) => void }) {
-        super({ state, currentView, toNext })
+    constructor({ state, currentView, toNext }: { state: (num: number) => void; currentView: string; toNext: (index: number) => void; }) {
+        super({ state, currentView, toNext, })
 
         window.addEventListener("wheel", this.handleScroll.bind(this));
         window.addEventListener("touchstart", this.handleTouchStart.bind(this));
@@ -60,4 +60,13 @@ export class ScrollViewer extends HildaLevel {
             this.levelUp;
         }
     };
+
+    destroy() {
+        window.removeEventListener("wheel", this.handleScroll);
+        window.removeEventListener("touchstart", this.handleTouchStart);
+        window.removeEventListener("touchmove", this.handleTouchMove);
+        window.removeEventListener("keydown", this.handleKeydown);
+
+        super.destroy()
+    }
 }

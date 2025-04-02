@@ -7,8 +7,8 @@ export class HildaController extends ScrollViewer {
     canvas: HTMLCanvasElement;
     canvasBomb: HTMLCanvasElement;
 
-    animation!: Animations;
-    animationBomb!: Animations;
+    animation!: Animations | null;
+    animationBomb!: Animations | null;
 
     LandscapeCanvasSize: number = 0;
     PortraitCanvasSize: number = 0;
@@ -64,7 +64,7 @@ export class HildaController extends ScrollViewer {
         this.cleanCanvas();
 
         this.animationBomb.loop(false, 150, () => {
-            this.animationBomb.stopAnimation();
+            this.animationBomb?.stopAnimation();
             this.cleanCanvasBomb();
         });
     }
@@ -87,7 +87,7 @@ export class HildaController extends ScrollViewer {
     }
 
     moveToClose() {
-        this.animation.moveToEnd(this.canvas);
+        this.animation?.moveToEnd(this.canvas);
     }
 
     hildaClose() {
@@ -129,12 +129,12 @@ export class HildaController extends ScrollViewer {
 
         this.LandscapeCanvasSize = 100;
         this.canvasRatio = 0.9349;
-        this.PortraitCanvasSize = 23;
+        this.PortraitCanvasSize = 43;
         this.bottomBomb = 7;
 
         this.sizeHilda()
 
-        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0");
+        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0", "portrait:bottom-[-25%]");
         this.animation = new Animations(this.canvas, "/resources/hilda_transform_spriteSheet.png", 33);
 
         this.mainElement.appendChild(this.canvas);
@@ -146,12 +146,12 @@ export class HildaController extends ScrollViewer {
 
         this.LandscapeCanvasSize = 100;
         this.canvasRatio = 0.9349;
-        this.PortraitCanvasSize = 23;
+        this.PortraitCanvasSize = 43;
         this.bottomBomb = 7;
 
         this.sizeHilda()
 
-        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0");
+        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0", "portrait:bottom-[-25%]");
         this.animation = new Animations(this.canvas, "/resources/hilda_Untransform_spriteSheet.png", 33);
 
         this.mainElement.appendChild(this.canvas);
@@ -163,12 +163,12 @@ export class HildaController extends ScrollViewer {
 
         this.LandscapeCanvasSize = 100;
         this.canvasRatio = 0.9349;
-        this.PortraitCanvasSize = 23;
+        this.PortraitCanvasSize = 43;
         this.bottomBomb = 7;
 
         this.sizeHilda()
 
-        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0");
+        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0", "portrait:bottom-[-25%]");
         this.animation = new Animations(this.canvas, "/resources/hilda_lua_idle_spriteSheet.png", 16);
 
         this.mainElement.appendChild(this.canvas);
@@ -180,12 +180,12 @@ export class HildaController extends ScrollViewer {
 
         this.LandscapeCanvasSize = 100;
         this.canvasRatio = 0.9349;
-        this.PortraitCanvasSize = 23;
+        this.PortraitCanvasSize = 43;
         this.bottomBomb = 7;
 
         this.sizeHilda()
 
-        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0");
+        this.canvas.classList.add('hilda-canvas-transform', 'absolute', 'z-30', 'bottom-[-35%]', "right-[5%]", "portrait:right-0", "portrait:bottom-[-25%]");
         this.animation = new Animations(this.canvas, "/resources/hilda_die_spriteSheet.png", 16);
 
         this.mainElement.appendChild(this.canvas);
@@ -199,8 +199,8 @@ export class HildaController extends ScrollViewer {
         }
 
         try {
-            this.animation.stop();
-            this.animation.stopAnimation(continuos);
+            this.animation?.stop();
+            this.animation?.stopAnimation(continuos);
         } catch (e) {
         }
     }
@@ -246,5 +246,14 @@ export class HildaController extends ScrollViewer {
                 window.removeEventListener("resize", handleResize);
             };
         }
+    }
+
+    destroy() {
+        window.removeEventListener("resize", this.sizeWindow);
+
+        this.animation = null;
+        this.animationBomb = null;
+
+        super.destroy();
     }
 }

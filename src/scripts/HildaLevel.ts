@@ -35,8 +35,6 @@ export class HildaLevel {
         if (this.stateInAnimation || this.currentView != "hilda") return;
 
         if (this.currentView == "hilda" && this.level == 4) {
-            this.toNext(1);
-            this.currentView = "works";
             return
         }
 
@@ -53,5 +51,10 @@ export class HildaLevel {
 
     setInAnimation(value: boolean) {
         this.stateInAnimation = value;
+    }
+
+    destroy() {
+        this.levelState = () => { };
+        this.toNext = () => { };
     }
 }
