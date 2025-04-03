@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { Project, projects } from "@/scripts/projects";
 import { useEffect, useRef, useState } from "react";
 import { Animations } from "@/scripts/Animations";
+import SkillExplain from "@/components/skillExplain/skillExplain";
 
 import Image from "next/image";
 import link from "../icons/link.png";
@@ -65,7 +66,7 @@ export default function WorkProject() {
         <div className="h-[100dvh] w-[100dvw] work-project-content">
             <div className="h-[100dvh] w-[60dvw] max-md:w-[95vw] work-project-container py-[10dvh] text-white font-luck">
 
-                <span className="w-full h-[35vh] flex flex-row items-center justify-between">
+                <span className="w-full flex flex-row items-center justify-between">
                     <h1 className="title w-[50%] mt-[8vh]">{projects[Number(params.project)].title}</h1>
 
                     <canvas ref={canvasRef}>
@@ -84,6 +85,8 @@ export default function WorkProject() {
                     <Image src={link} alt="" className="icon cursor-pointer" />
                     <Image src={github} alt="" className="icon cursor-pointer" />
                 </span>
+
+                <SkillExplain title="USED SKILLS" techs={projects[Number(params.project)].skills} />
 
             </div>
         </div>

@@ -1,0 +1,48 @@
+.skill-content {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../source/paper_texture.png");
+}
+
+.skill-content .icon {
+    height: clamp(100px, 10vw, 16vw);
+    width: clamp(100px, 10vw, 16vw);
+}
+
+.skill-content .title {
+    font-size: clamp(3rem, 6dvw, 12rem);
+}
+
+.skill-content .title-content {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../source/player2_texture.png");
+}
+
+.content-tech {
+    border: solid transparent .45em;
+    transition: all .2s linear;
+}
+
+.content-tech.selected {
+    border-color: #262626;
+}
+
+.content-tech::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 91%;
+    height: 91%;
+    border: solid transparent .3em;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.content-tech.selected::before {
+    border-color: #262626;
+}

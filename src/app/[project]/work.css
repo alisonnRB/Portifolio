@@ -47,11 +47,6 @@
     background-position: center;
 }
 
-.icon {
-    height: clamp(50px, 6vw, 10vw);
-    width: clamp(50px, 6vw, 10vw);
-}
-
 .link {
     transform: translateY(-100%);
 }
