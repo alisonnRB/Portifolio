@@ -21,27 +21,39 @@
 }
 
 .card-works {
-    background-image: url("./source/paper_texture.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    box-shadow: 0px 0px 5px 5px #00000038;
+}
+
+.card-works.nonSelect {
+    background-image: url("../source/paper_texture.png");
+}
+
+.card-works.player1 {
+    background-image: url("../source/player1_texture.png");
+}
+
+.card-works.player2 {
+    background-image: url("../source/player2_texture.png");
 }
 
 .works .title {
-    font-size: clamp(3rem, 5dvw, 10rem);
+    font-size: clamp(2.5rem, 5dvw, 10rem);
 }
 
 .works .sub-title {
-    font-size: clamp(.5rem, 1dvw, 3rem);
+    font-size: clamp(.6rem, 1dvw, 3rem);
 }
 
 .works .name {
-    font-size: clamp(1.5rem, 2dvw, 5rem);
+    font-size: clamp(.9rem, 2dvw, 5rem);
     word-break: break-all;
 }
 
 .works .desc {
-    font-size: clamp(.5rem, 1.2dvw, 3rem);
+    font-size: clamp(.6rem, 1.2dvw, 3rem);
     word-break: break-all;
 }
 

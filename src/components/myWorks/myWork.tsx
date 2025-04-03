@@ -33,8 +33,8 @@ export default function MyWork() {
     return (
         <section className="section-container non bg-[#347ABE]" ref={ref}>
             <div className="relative works overflow-hidden z-0 shrink-0 h-[100dvh] w-[100dvw] pb-[2vh]">
-                <div className="flow relative pt-[10vh] h-[100%] w-[100%] project-content flex flex-col items-center gap-[5vh]">
-                    <span className="w-[60%] flex flex-row items-start">
+                <div className="flow relative pt-[10vh] h-[100%] w-[100%] project-content flex flex-col items-center gap-[5dvh] portrait:gap-[3svh]">
+                    <span className="flex w-[60vw] max-md:w-[95vw] flex-row items-start">
                         <h1 className="text-white font-luck title">MY WORKS</h1>
                     </span>
                     {ProjectGenerator()}

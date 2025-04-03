@@ -6,6 +6,8 @@ import { Project } from "@/scripts/projects";
 import { Animations } from "@/scripts/Animations";
 
 import Image from "next/image";
+import { useRouter } from 'next/navigation'
+
 import player1Unselect from "./source/player1_unselect.png";
 import player2Unselect from "./source/player2_unselect.png";
 import player1Select from "./source/player1_select.png";
@@ -16,9 +18,11 @@ export default function MyProjects({ project, index }: { project: Project; index
     const [selected, setSelected] = useState<boolean>(false);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const animation = useRef<Animations | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         if (!selected || !canvasRef.current) return;
+
 
         if (index % 2 == 0) {
             animation.current = new Animations(canvasRef.current, '/resources/player1_spriteSheet.png', 8);
@@ -26,7 +30,7 @@ export default function MyProjects({ project, index }: { project: Project; index
             animation.current = new Animations(canvasRef.current, '/resources/player2_spriteSheet.png', 8);
         }
 
-        animation.current.loop(false, 100, () => { });
+        animation.current.loop(false, 100, () => router.push(`/${index}`));
 
         return () => {
             animation.current?.stopAnimation(true);
@@ -35,13 +39,18 @@ export default function MyProjects({ project, index }: { project: Project; index
     }, [selected])
 
     return (
-        <div className="card-works w-[60%] min-h-[17dvh] flex flex-row justify-between px-[3%] text-dark font-luck border-dark border-solid border-2">
+        <div
+            className={`card-works ${hover || selected ? (index % 2 == 0 ? "player1" : "player2") : "nonSelect"} w-[60vw] max-md:w-[95vw] min-h-[17dvh] portrait:min-h-[12dvh] flex flex-row justify-between px-[3%] ${hover || selected ? "text-white" : "text-dark"} font-luck border-dark border-solid border-2 cursor-pointer`}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            onClick={() => setSelected(true)}
+        >
             <span className="w-[25%]">
                 <h2 className="sub-title h-[35%] flex items-center">PROJECT</h2>
                 <h1 className="h-[65%] flex items-center name">{project.name}</h1>
             </span>
 
-            <span className="w-[65%]">
+            <span className="w-[30%]">
                 <h2 className="sub-title h-[35%] flex items-center">DESCRIPTION</h2>
                 <h1 className="h-[65%] flex items-center desc">{project.resume}</h1>
             </span>
@@ -53,22 +62,17 @@ export default function MyProjects({ project, index }: { project: Project; index
                         <Image
                             src={index % 2 === 0 ? player1Unselect : player2Unselect}
                             alt=""
-                            className="w-[70%] cursor-pointer"
-                            onMouseEnter={() => setHover(true)}
-                            onMouseLeave={() => setHover(false)}
+                            className="w-[12vw] max-w-[70px]"
                         />
                     ) : (
                         <Image
                             src={index % 2 === 0 ? player1Select : player2Select}
                             alt=""
-                            className="w-[70%] cursor-pointer"
-                            onMouseEnter={() => setHover(true)}
-                            onMouseLeave={() => setHover(false)}
-                            onClick={() => setSelected(true)}
+                            className="w-[12vw] max-w-[70px]"
                         />
                     )
                 ) :
-                    <canvas ref={canvasRef} className="w-[85%] h-[85%]">
+                    <canvas ref={canvasRef} className="w-[13vw] max-w-[75px] h-[13vw] max-h-[75px]">
                     </canvas>
                 }
 

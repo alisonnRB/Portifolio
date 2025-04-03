@@ -1,7 +1,7 @@
 import './dragon.css';
 
 import Image from 'next/image';
-import arrow from './source/arow.png';
+import arrow from '../source/arow.png';
 
 
 import background from './source/fundo.png';

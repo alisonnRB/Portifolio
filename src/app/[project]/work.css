@@ -1,0 +1,57 @@
+.work-project-content {
+    background: url('./source/bg2.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.work-project-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.work-project-container {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: 0;
+}
+
+.work-project-container::-webkit-scrollbar {
+    width: 0;
+}
+
+.work-project-container .title {
+    font-size: clamp(2rem, 3.5dvw, 8rem);
+}
+
+.work-project-container .sub-title {
+    font-size: clamp(.9rem, 1dvw, 3rem);
+}
+
+.work-project-container .text {
+    font-size: clamp(1.1rem, 1.5dvw, 4rem);
+}
+
+.capa {
+    background: url('../../components/source/paper_texture.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.icon {
+    height: clamp(50px, 6vw, 10vw);
+    width: clamp(50px, 6vw, 10vw);
+}
+
+.link {
+    transform: translateY(-100%);
+}

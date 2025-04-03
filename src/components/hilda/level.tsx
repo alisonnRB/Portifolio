@@ -1,5 +1,5 @@
 import Image from "next/image";
-import arrow from "@/components/dragon/source/arow.png";
+import arrow from "../source/arow.png";
 
 export default function Level({ level, callback }: { level: number | null; callback: () => void }) {
     return (
