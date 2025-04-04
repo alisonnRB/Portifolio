@@ -6,8 +6,8 @@
 }
 
 .skill-content .icon {
-    height: clamp(100px, 10vw, 16vw);
-    width: clamp(100px, 10vw, 16vw);
+    height: clamp(60px, 9vw, 12vw);
+    width: clamp(60px, 9vw, 12vw);
 }
 
 .skill-content .title {
@@ -45,4 +45,16 @@
 
 .content-tech.selected::before {
     border-color: #262626;
+}
+
+.skill-content .name-title {
+    font-size: clamp(1.2rem, 2dvw, 8rem);
+}
+
+.skill-content .type-title {
+    font-size: clamp(.9rem, 1dvw, 5rem);
+}
+
+.skill-content .desc-text {
+    font-size: clamp(.8rem, 1dvw, 5rem);
 }

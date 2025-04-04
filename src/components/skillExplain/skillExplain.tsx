@@ -32,9 +32,9 @@ export default function SkillExplain({ title, techs }: { title: string; techs: s
             </div>
 
             <span className="w-full flex flex-col items-center text-dark">
-                <h2 className="">{select === "" && !techFounded ? "SELECT A SKILL" : techFounded?.name}</h2>
-                <h3 className="">{select === "" && !techFounded ? "click e descubra" : techFounded?.type}</h3>
-                <p className="min-h-[20vh] text-center p-[5%] font-maven font-semibold">{select === "" && !techFounded ? "" : techFounded?.description}</p>
+                <h2 className="name-title">{select === "" && !techFounded ? "SELECT A SKILL" : techFounded?.name}</h2>
+                <h3 className="type-title">{select === "" && !techFounded ? "click e descubra" : techFounded?.type}</h3>
+                <p className="desc-text min-h-[30%] text-center p-[5%]">{select === "" && !techFounded ? "" : techFounded?.description}</p>
             </span>
         </div>
     );
