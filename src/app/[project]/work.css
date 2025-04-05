@@ -50,3 +50,7 @@
 .link {
     transform: translateY(-100%);
 }
+
+.keywords {
+    font-size: clamp(1.2rem, 2dvw, 8rem);
+}

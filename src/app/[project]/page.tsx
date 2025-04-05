@@ -62,6 +62,12 @@ export default function WorkProject() {
 
     }, [canvasRef, isPortrait])
 
+    const keywordsGenerator = () => {
+        return projects[Number(params.project)].keywords.map((keyword, index) => (
+            <p className="keywords" key={index}>{keyword}</p>
+        ));
+    };
+
     return (
         <div className="h-[100dvh] w-[100dvw] work-project-content">
             <div className="h-[100dvh] w-[60dvw] max-md:w-[95vw] work-project-container py-[10dvh] text-white font-luck">
@@ -87,6 +93,11 @@ export default function WorkProject() {
                 </span>
 
                 <SkillExplain title="USED SKILLS" techs={projects[Number(params.project)].skills} />
+
+                <span className="w-full mt-[13dvh] flex flex-col">
+                    <h1 className="title">KEYWORDS</h1>
+                    {keywordsGenerator()}
+                </span>
 
             </div>
         </div>
