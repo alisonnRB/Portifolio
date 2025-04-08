@@ -30,7 +30,8 @@ export default function MyProjects({ project, index }: { project: Project; index
             animation.current = new Animations(canvasRef.current, '/resources/player2_spriteSheet.png', 8);
         }
 
-        animation.current.loop(false, 100, () => router.push(`/${index}`));
+        animation.current.loop(false, 100, () => setTimeout(() => router.push(`/${index}`), 100));
+
 
         return () => {
             animation.current?.stopAnimation(true);

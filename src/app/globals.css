@@ -39,15 +39,8 @@ body {
 .section-container {
   height: 100dvh;
   width: 100dvw;
-  position: sticky;
-  top: 0;
-  left: 0;
-  scroll-snap-align: initial;
-}
-
-.section-container.non {
   position: relative;
-  scroll-snap-align: none;
+  scroll-snap-align: start;
 }
 
 .icon {

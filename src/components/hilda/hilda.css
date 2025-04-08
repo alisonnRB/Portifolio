@@ -3,6 +3,13 @@
     background-size: cover;
 }
 
+.butoon-start {
+    background: url('../source/player2_texture.png') no-repeat;
+    background-size: cover;
+    font-size: clamp(1rem, 3dvw, 7rem);
+    border-radius: 50px;
+}
+
 .camada1-hilda,
 .camada3-hilda,
 .camada4-hilda {

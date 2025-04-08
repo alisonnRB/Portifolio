@@ -5,10 +5,12 @@ export class WorksScrollViewer {
     lastExecutionTime: number = 0;
     threshold: number = 40;
     debounceTime: number = 2000;
+    index: number;
     toNext: (index: number) => void;
 
-    constructor({ toNext, section }: { toNext: (index: number) => void; section: HTMLElement }) {
+    constructor({ toNext, section, index }: { toNext: (index: number) => void; section: HTMLElement; index: number }) {
 
+        this.index = index;
         this.toNext = toNext;
 
         section.addEventListener("wheel", this.handleScroll.bind(this));
@@ -32,8 +34,9 @@ export class WorksScrollViewer {
         if (!this.canExecute()) return;
 
         if (Math.abs(event.deltaY) >= this.threshold) {
-            event.deltaY > 0 ? this.toNext(1) : this.toNext(-1);
+            event.deltaY > 0 ? this.toNext(this.index) : this.toNext(this.index - 2);
             this.destroy()
+
         }
     };
 
@@ -48,9 +51,11 @@ export class WorksScrollViewer {
         const delta = Math.abs(currentY - this.lastTouchY);
 
         if (delta >= this.threshold) {
-            currentY < this.lastTouchY ? this.toNext(1) : this.toNext(-1);
+            currentY < this.lastTouchY ? this.toNext(this.index) : this.toNext(this.index - 2);
             this.lastTouchY = currentY;
+
             this.destroy()
+
         }
     };
 
@@ -58,13 +63,14 @@ export class WorksScrollViewer {
         if (!this.canExecute()) return;
 
         if (event.key === "ArrowDown" || event.key === "PageDown") {
-            this.toNext(1);
+            this.toNext(this.index);
         }
         if (event.key === "ArrowUp" || event.key === "PageUp") {
-            this.toNext(-1);
+            this.toNext(this.index - 2);
         }
 
         this.destroy()
+
     };
 
     destroy() {

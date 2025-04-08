@@ -65,3 +65,36 @@
 .flow::-webkit-scrollbar {
     width: 0;
 }
+
+.techs-main {
+    transform: translateY(-250%);
+}
+
+.techs-main {
+    transform: translate(.2%, -220%);
+}
+
+.techs-main .icon {
+    height: 100%;
+    width: 100%;
+}
+
+.works .skill-content .icon {
+    height: clamp(50px, 6vw, 8vw);
+    width: clamp(50px, 6vw, 8vw);
+}
+
+.button-play {
+    background: url('../source/player2_texture.png') no-repeat;
+    background-size: cover;
+    font-size: clamp(1rem, 3dvw, 7rem);
+    border-radius: 50px;
+}
+
+@media (width < 48rem
+    /* 768px */
+) {
+    .techs-main {
+        transform: translate(.5%, -205%);
+    }
+}

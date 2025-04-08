@@ -25,7 +25,7 @@ import { useInView } from 'react-intersection-observer';
 export default function DragonCenarie() {
     const { changeView, currentView, toNext } = useContext(viewContext);
     const { ref, inView } = useInView({
-        triggerOnce: false,
+        triggerOnce: true,
         threshold: 1,
     });
 
@@ -34,7 +34,7 @@ export default function DragonCenarie() {
     }, [inView])
 
     return (
-        <section className='section-container non dragons' ref={ref}>
+        <section className='section-container non dragons' id='dragon' ref={ref}>
             <div className="h-full w-full relative overflow-hidden">
                 {/* fundo */}
                 <CamadaRepeat container={"background-container"} img={background} section={"background"} zIndex={10} />

@@ -16,9 +16,9 @@ export class HildaLevel {
     }
 
     levelUp(): void {
-        if (this.stateInAnimation || this.currentView != "hilda") return;
+        if (this.stateInAnimation) return;
 
-        if (this.currentView == "hilda" && this.level == 0) {
+        if (this.currentView == "hilda_start" && this.level == 0) {
             this.toNext(-1);
             this.currentView = "dragon";
             return
@@ -32,9 +32,9 @@ export class HildaLevel {
     }
 
     levelDown(): void {
-        if (this.stateInAnimation || this.currentView != "hilda") return;
+        if (this.stateInAnimation) return;
 
-        if (this.currentView == "hilda" && this.level == 4) {
+        if (this.currentView == "hilda_start" && this.level == 4) {
             return
         }
 

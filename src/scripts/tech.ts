@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 
-import csharp from "@/app/icons/C#.png";
+import csharp from "@/app/icons/csharp.png";
 import css from "@/app/icons/css.png";
 import git from "@/app/icons/git.png";
 import html from "@/app/icons/html.png";
@@ -15,6 +15,7 @@ import python from "@/app/icons/python.png";
 import react from "@/app/icons/react.png";
 import sass from "@/app/icons/sass.png";
 import tailwind from "@/app/icons/tailwind.png";
+import next from "@/app/icons/next.png";
 
 export type Tech = {
     name: string;
@@ -112,6 +113,12 @@ const technologies: Tech[] = [
         name: "tailwind",
         image: tailwind,
         type: "CSS framework",
+        description: "Tailwind CSS é um framework de estilos utilitário que permite construir interfaces modernas e responsivas rapidamente, sem a necessidade de escrever CSS tradicional."
+    },
+    {
+        name: "next",
+        image: next,
+        type: "framework",
         description: "Tailwind CSS é um framework de estilos utilitário que permite construir interfaces modernas e responsivas rapidamente, sem a necessidade de escrever CSS tradicional."
     }
 ];

@@ -33,7 +33,7 @@ const ViewProvider = ({ children }: { children: React.ReactNode }) => {
         console.log(currentView)
         const home = document.querySelector(".home");
         if (home instanceof HTMLElement) {
-            if (currentView == "loading" || currentView == "dragon" || currentView == "dragon_idle" || currentView == "hilda" || currentView == "works") home.style.overflow = "hidden";
+            if (currentView == "loading" || currentView == "dragon" || currentView == "hilda_start") home.style.overflow = "hidden";
             else home.style.overflow = "scroll";
         }
     }, [currentView])

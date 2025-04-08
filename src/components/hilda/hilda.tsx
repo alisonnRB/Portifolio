@@ -9,9 +9,10 @@ import Level from "./level";
 
 export default function Hilda({ currentView, changeView, toNext }: { currentView: string; changeView: (name: string) => void; toNext: (index: number) => void }) {
     const hilda = useRef<HildaController | null>(null);
+    const [start, setStart] = useState<boolean>(false);
     const [level, setLevel] = useState<number | null>(null);
 
-    const [text1, setText1] = useState<boolean>(false);
+    const [text1, setText1] = useState<boolean>(true);
     const [text2, setText2] = useState<boolean>(false);
     const [text3, setText3] = useState<boolean>(false);
     const [text4, setText4] = useState<boolean>(false);
@@ -19,17 +20,23 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
     const [close, setClose] = useState<boolean>(false);
 
     useEffect(() => {
-        if (hilda.current) {
-            hilda.current.destroy();  // Destrói qualquer instância anterior
-            hilda.current = null;
-        }
-        hilda.current = new HildaController({ state: setLevel, currentView, toNext });
+        if (start) {
+            const element = document.querySelector("#hilda");
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                changeView("hilda_start");
+            }
 
-        return () => {
-            hilda.current?.destroy();
-            hilda.current = null;
-        };
-    }, [currentView])
+            hilda.current = new HildaController({ state: setLevel, currentView, toNext });
+
+            hilda.current?.levelDown();
+
+            return () => {
+                hilda.current?.destroy();
+                hilda.current = null;
+            };
+        }
+    }, [start]);
 
     function delay(ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -53,6 +60,11 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
                     setText2(false);
                     setClose(false);
                     setText1(true);
+
+                    changeView("hilda");
+                    setStart(false)
+                    hilda.current.destroy();
+
                 } else {
                     setText1(true);
                     hilda.current.setInAnimation(false);
@@ -184,7 +196,9 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
     return (
         <>
             {/* Level 0 */}
-            {text1 ? <HildaText title={"WHO AM I?"} text={"Keep scrolling to find out"} apair={false} /> : <></>}
+            {text1 ? <HildaText title={"WHO AM I?"} text={"Click and Keep scrolling to find out about me"} apair={false} /> : <></>}
+            {text1 ? <button onClick={() => { setStart(true) }} className="absolute z-50 font-luck text-white left-[4%] top-[35%] butoon-start px-20 pb-1 pt-3 cursor-pointer">START</button> : null}
+
 
             {/* Level 1*/}
             {text2 ? <div className={`${close ? "text-close" : ""}`}><HildaText title={"A SOFTWARE ENGINEER"} text={"I'm a software engineer passionate about crafting intuitive and creative solutions. I blend clean code with thoughtful design, always striving to build seamless digital experiences."} apair={true} /></div> : <></>}

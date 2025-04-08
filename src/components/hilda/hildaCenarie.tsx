@@ -29,7 +29,7 @@ export default function HildaCenarie() {
 
 
     return (
-        <section className="section-container" ref={ref}>
+        <section className="section-container" id="hilda" ref={ref}>
             <div className="relative background-hilda overflow-hidden z-0 shrink-0 h-[100dvh] w-[100dvw]">
                 {/* camada 1 */}
                 <Camada img={primeiraCamada} camada="camada1-hilda" num={0} zIndex={10} bottom={-10} />
@@ -45,7 +45,7 @@ export default function HildaCenarie() {
                 <Camada img={quartaCamada} camada="camada4-hilda" num={0} zIndex={50} bottom={-10} />
 
                 {/* hilda */}
-                {currentView == "hilda" ? <Hilda currentView={currentView} changeView={changeView} toNext={toNext} /> : <></>}
+                {currentView == "hilda" || currentView == "hilda_start" ? <Hilda currentView={currentView} changeView={changeView} toNext={toNext} /> : <></>}
             </div>
         </section>
     );

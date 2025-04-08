@@ -45,7 +45,7 @@ export class ScrollViewer extends HildaLevel {
         const delta = Math.abs(currentY - this.lastTouchY);
 
         if (delta >= this.threshold) {
-            currentY < this.lastTouchY ? this.levelDown : this.levelUp;
+            currentY < this.lastTouchY ? this.levelDown() : this.levelUp();
             this.lastTouchY = currentY;
         }
     };
@@ -54,10 +54,10 @@ export class ScrollViewer extends HildaLevel {
         if (!this.canExecute()) return;
 
         if (event.key === "ArrowDown" || event.key === "PageDown") {
-            this.levelDown;
+            this.levelDown();
         }
         if (event.key === "ArrowUp" || event.key === "PageUp") {
-            this.levelUp;
+            this.levelUp();
         }
     };
 
