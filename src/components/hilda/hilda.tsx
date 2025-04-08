@@ -196,8 +196,10 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
     return (
         <>
             {/* Level 0 */}
-            {text1 ? <HildaText title={"WHO AM I?"} text={"Click and Keep scrolling to find out about me"} apair={false} /> : <></>}
-            {text1 ? <button onClick={() => { setStart(true) }} className="absolute z-50 font-luck text-white left-[4%] top-[35%] butoon-start px-20 pb-1 pt-3 cursor-pointer">START</button> : null}
+            {text1 ? <>
+                <HildaText title={"WHO AM I?"} text={"Click and Keep scrolling to find out about me"} apair={false} />
+                <button onClick={() => { setStart(true) }} className="absolute z-50 font-luck text-white left-[4%] top-[35%] max-sm:top-[45%] butoon-start px-20 max-md:px-[3rem] pb-1 pt-3 cursor-pointer">START</button>
+            </> : null}
 
 
             {/* Level 1*/}

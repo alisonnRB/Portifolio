@@ -20,7 +20,7 @@ export default function HildaText({ title, text, apair }: { title: String; text:
     return (
         <div className={`absolute z-50 h-[75dvh] w-[45dvw] font-luck left-[5%] top-[10%] text-white hilda-title-content portrait:left-[2%] portrait:top-[20%] portrait:w-[65dvw] ${apair ? "text-move" : ""}`}>
             <h1 className={`hilda-title ${animatinTitle ? "hilda-title-animation" : ""}`}>{title}</h1>
-            <p className="opacity-75">{text}</p>
+            <p className="opacity-75 hilda-text">{text}</p>
         </div>
     );
 }
