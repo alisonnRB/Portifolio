@@ -61,7 +61,7 @@ export default function Dragon({ currentView, changeView }: { currentView: strin
     useEffect(() => {
         if (animatinState == "idle" && canvasRef.current) {
             animation.current = new Animations(canvasRef.current, '/resources/dragon_idle_spriteSheet.png', 16);
-            animation.current.loop(true, 60);
+            animation.current.loop(true, 50);
             changeView("dragon_idle");
 
             return () => {

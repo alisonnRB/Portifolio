@@ -82,7 +82,7 @@ export class HildaController extends ScrollViewer {
         this.animation = new Animations(this.canvas, "/resources/hilda_idle_spriteSheet.png", 21);
 
         this.mainElement.appendChild(this.canvas);
-        this.animation.loop(true, 100);
+        this.animation.loop(true, 60);
         this.animation.idle();
     }
 
@@ -172,7 +172,7 @@ export class HildaController extends ScrollViewer {
         this.animation = new Animations(this.canvas, "/resources/hilda_lua_idle_spriteSheet.png", 16);
 
         this.mainElement.appendChild(this.canvas);
-        this.animation.loop(true, 100);
+        this.animation.loop(true, 60);
     }
 
     hildaDie() {
