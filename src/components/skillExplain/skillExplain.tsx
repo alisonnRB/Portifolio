@@ -37,7 +37,7 @@ export default function SkillExplain({ title, techs }: { title: string; techs: s
                 />
 
                 <div className="z-10 flex justify-center items-center w-full">
-                    <h1 className="title mt-3">{title}</h1>
+                    <h1 className="title mt-3 text-center">{title}</h1>
                 </div>
             </div>
 

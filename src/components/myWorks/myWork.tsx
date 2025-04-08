@@ -61,9 +61,9 @@ export default function MyWork() {
                     </span>
                     {ProjectGenerator()}
 
-                    <span className="w-[45vw] max-md:w-[75vw] mt-[20dvh]">
+                    <span className="w-[45vw] max-md:w-[95vw] mt-[20dvh]">
                         <Image src={player} alt="" className="w-full" />
-                        <span className="w-full techs-main grid grid-cols-5 gap-[1%] max-md:gap-[0] max-md:px-[3vw] px-[3vw]">
+                        <span className="w-full techs-main grid grid-cols-5 gap-[1%] max-md:gap-[0] max-md:px-[6vw] px-[3vw]">
                             {tech()}
                             <div className="col-span-1"></div>
                         </span>
@@ -72,7 +72,7 @@ export default function MyWork() {
                         <SkillExplain title="MY SKILLS KIT" techs={[...Alltechnology]} />
                     </span>
 
-                    <span className="w-[45vw] max-md:w-[75vw] mt-[20dvh] mb-[20dvh]">
+                    <span className="w-[45vw] max-md:w-[95vw] mt-[20dvh] mb-[20dvh]">
                         <button className="w-full rounded-[50px] font-luck text-white button-play pt-[5vh] pb-[3vh] cursor-pointer">LET'S PLAY</button>
                     </span>
 

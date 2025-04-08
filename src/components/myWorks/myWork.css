@@ -67,11 +67,7 @@
 }
 
 .techs-main {
-    transform: translateY(-250%);
-}
-
-.techs-main {
-    transform: translate(.2%, -220%);
+    transform: translate(0%, -220%);
 }
 
 .techs-main .icon {
@@ -87,7 +83,7 @@
 .button-play {
     background: url('../source/player2_texture.png') no-repeat;
     background-size: cover;
-    font-size: clamp(1rem, 3dvw, 7rem);
+    font-size: clamp(1.5rem, 3dvw, 7rem);
     border-radius: 50px;
 }
 
@@ -95,6 +91,6 @@
     /* 768px */
 ) {
     .techs-main {
-        transform: translate(.5%, -205%);
+        transform: translate(.2%, -210%);
     }
 }

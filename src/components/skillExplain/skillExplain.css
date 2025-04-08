@@ -11,7 +11,7 @@
 }
 
 .skill-content .title {
-    font-size: clamp(3rem, 6dvw, 12rem);
+    font-size: clamp(2.5rem, 6dvw, 12rem);
 }
 
 .content-tech {

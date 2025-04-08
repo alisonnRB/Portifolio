@@ -54,3 +54,29 @@
 .keywords {
     font-size: clamp(1.2rem, 2dvw, 8rem);
 }
+
+.comeback {
+    background: url('../../components/source/player2_texture.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.arrow-back {
+    height: clamp(3.2rem, 4vw, 10vw);
+    width: clamp(3.2rem, 4vw, 10vw);
+    transform: rotate(90deg);
+}
+
+@media screen and (width < 300px) {
+    .comeback {
+        display: none;
+    }
+
+}
+
+@media screen and (width < 200px) {
+    .canvas {
+        display: none;
+    }
+
+}
