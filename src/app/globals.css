@@ -24,6 +24,7 @@ body {
   border: none;
   outline: none;
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .home::-webkit-scrollbar {

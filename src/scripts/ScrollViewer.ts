@@ -1,52 +1,60 @@
 import { HildaLevel } from "./HildaLevel";
 
 export class ScrollViewer extends HildaLevel {
-    lastTouchY: number = 0;
-    lastExecutionTime: number = 0;
-    threshold: number = 40;
-    debounceTime: number = 2000;
+    private lastTouchY: number = 0;
+    private touchStartY: number = 0;
+    private lastExecutionTime: number = 0;
+    private threshold: number = 50;
+    private debounceTime: number = 1000;
+    private isTouchActive: boolean = false;
 
     constructor({ state, currentView, toNext }: { state: (num: number) => void; currentView: string; toNext: (index: number) => void; }) {
-        super({ state, currentView, toNext, })
+        super({ state, currentView, toNext });
 
+        window.addEventListener("touchstart", this.handleTouchStart.bind(this), { passive: false });
+        window.addEventListener("touchmove", this.handleTouchMove.bind(this), { passive: false });
+        window.addEventListener("touchend", this.handleTouchEnd.bind(this));
         window.addEventListener("wheel", this.handleScroll.bind(this));
-        window.addEventListener("touchstart", this.handleTouchStart.bind(this));
-        window.addEventListener("touchmove", this.handleTouchMove.bind(this));
         window.addEventListener("keydown", this.handleKeydown.bind(this));
-
-        this.canExecute();
     }
 
-    private canExecute() {
+    private canExecute(): boolean {
         const now = Date.now();
-        if (now - this.lastExecutionTime >= this.debounceTime) {
-            this.lastExecutionTime = now;
-            return true;
-        }
-        return false;
+        return now - this.lastExecutionTime >= this.debounceTime;
     }
+
+    private handleTouchStart = (event: TouchEvent) => {
+        this.isTouchActive = true;
+        this.touchStartY = event.touches[0].clientY;
+        this.lastTouchY = this.touchStartY;
+    };
+
+    private handleTouchMove = (event: TouchEvent) => {
+        if (!this.isTouchActive || !this.canExecute()) return;
+
+        event.preventDefault();
+        const currentY = event.touches[0].clientY;
+        const deltaY = currentY - this.touchStartY;
+
+        if (Math.abs(deltaY) >= this.threshold) {
+            this.lastExecutionTime = Date.now();
+            deltaY > 0 ? this.levelUp() : this.levelDown();
+            this.isTouchActive = false;
+        }
+
+        this.lastTouchY = currentY;
+    };
+
+    private handleTouchEnd = () => {
+        this.isTouchActive = false;
+    };
 
     handleScroll = (event: WheelEvent) => {
         if (!this.canExecute()) return;
 
         if (Math.abs(event.deltaY) >= this.threshold) {
             event.deltaY > 0 ? this.levelDown() : this.levelUp();
-        }
-    };
-
-    handleTouchStart = (event: TouchEvent) => {
-        this.lastTouchY = event.touches[0].clientY;
-    };
-
-    handleTouchMove = (event: TouchEvent) => {
-        if (!this.canExecute()) return;
-
-        const currentY = event.touches[0].clientY;
-        const delta = Math.abs(currentY - this.lastTouchY);
-
-        if (delta >= this.threshold) {
-            currentY < this.lastTouchY ? this.levelDown() : this.levelUp();
-            this.lastTouchY = currentY;
+            this.lastExecutionTime = Date.now();
         }
     };
 
@@ -55,18 +63,21 @@ export class ScrollViewer extends HildaLevel {
 
         if (event.key === "ArrowDown" || event.key === "PageDown") {
             this.levelDown();
+            this.lastExecutionTime = Date.now();
         }
         if (event.key === "ArrowUp" || event.key === "PageUp") {
             this.levelUp();
+            this.lastExecutionTime = Date.now();
         }
     };
 
     destroy() {
-        window.removeEventListener("wheel", this.handleScroll);
         window.removeEventListener("touchstart", this.handleTouchStart);
         window.removeEventListener("touchmove", this.handleTouchMove);
+        window.removeEventListener("touchend", this.handleTouchEnd);
+        window.removeEventListener("wheel", this.handleScroll);
         window.removeEventListener("keydown", this.handleKeydown);
 
-        super.destroy()
+        super.destroy();
     }
 }

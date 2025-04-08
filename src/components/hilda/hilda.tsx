@@ -56,7 +56,7 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
                     hilda.current.hildaClose();
                     setClose(true);
 
-                    await delay(4500);
+                    await delay(3000);
                     setText2(false);
                     setClose(false);
                     setText1(true);
@@ -78,7 +78,7 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
                     hilda.current.hildaClose();
                     setClose(true);
 
-                    await delay(4500);
+                    await delay(3000);
                     hilda.current.hildaApair();
                     setText3(false);
                     setClose(false);
@@ -100,7 +100,7 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
             case 2:
                 if (side) {
                     hilda.current?.hildaMoonUntransform();
-                    await delay(2500);
+                    await delay(3500);
 
                     hilda.current?.hildaIdle()
                     await delay(1000);
@@ -110,7 +110,7 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
 
                     hilda.current.hildaClose();
                     setClose(true);
-                    await delay(4500);
+                    await delay(3000);
 
                     hilda.current.hildaApair();
                     setText4(false);
@@ -127,7 +127,7 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
                     hilda.current.hildaClose();
                     setClose(true);
 
-                    await delay(4500);
+                    await delay(3000);
                     hilda.current.hildaApair();
                     setText2(false);
                     setClose(false);
@@ -141,7 +141,7 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
             case 3:
                 if (side) {
                     setClose(true);
-                    await delay(4500);
+                    await delay(3000);
                     setText5(false);
                     setClose(false)
                     setText4(true);
@@ -153,7 +153,7 @@ export default function Hilda({ currentView, changeView, toNext }: { currentView
                     hilda.current.hildaClose();
                     setClose(true);
 
-                    await delay(4500);
+                    await delay(3000);
                     hilda.current.hildaApair();
                     setText3(false);
                     setClose(false);

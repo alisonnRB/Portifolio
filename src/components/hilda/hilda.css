@@ -53,11 +53,11 @@
 }
 
 .hilda-title {
-    font-size: clamp(2rem, 5dvw, 10rem);
+    font-size: clamp(3rem, 5dvw, 10rem);
 }
 
 .hilda-text {
-    font-size: clamp(.5rem, 2dvw, 5rem);
+    font-size: clamp(1rem, 2dvw, 5rem);
 }
 
 .hilda-title-animation {
@@ -85,7 +85,7 @@
 }
 
 .hilda-canvas-close {
-    animation: moveTo 3.5s both reverse;
+    animation: moveToClose 3s both;
 }
 
 
@@ -96,6 +96,20 @@
 
     to {
         transform: translateX(0);
+    }
+}
+
+@keyframes moveToClose {
+    0% {
+        transform: translateX(0);
+    }
+
+    85% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-150dvw);
     }
 }
 

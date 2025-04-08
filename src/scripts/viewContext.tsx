@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext, useEffect, useCallback } from "react";
 
 type View = {
     currentView: string;
@@ -8,18 +8,33 @@ type View = {
     toNext: (index: number) => void;
 }
 
-//contexto
 const viewContext = createContext<View>({} as View);
 
-//provedor
 const ViewProvider = ({ children }: { children: React.ReactNode }) => {
     const [currentView, setCurrentView] = useState<string>("loading");
     const [sections, setSections] = useState<HTMLElement[]>([]);
+    const blockedViews = ["loading", "dragon", "hilda_start"];
+
+    const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        if (blockedViews.includes(currentView)) {
+            if (e.key === 'ArrowDown' || e.key === 'PageDown' ||
+                e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
+    }, [currentView]);
 
     useEffect(() => {
         const sectionElements = document.querySelectorAll("section");
         setSections(Array.from(sectionElements) as HTMLElement[]);
-    }, []);
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
 
     const changeView = (name: string) => {
         setCurrentView(name);
@@ -33,8 +48,11 @@ const ViewProvider = ({ children }: { children: React.ReactNode }) => {
         console.log(currentView)
         const home = document.querySelector(".home");
         if (home instanceof HTMLElement) {
-            if (currentView == "loading" || currentView == "dragon" || currentView == "hilda_start") home.style.overflow = "hidden";
-            else home.style.overflow = "scroll";
+            if (blockedViews.includes(currentView)) {
+                home.style.overflow = "hidden";
+            } else {
+                home.style.overflow = "scroll";
+            }
         }
     }, [currentView])
 
