@@ -3,6 +3,7 @@
 import "./myWork.css";
 
 import { useEffect, useContext, useState, ReactElement } from "react";
+import { useRouter } from 'next/navigation'
 import { useInView } from "react-intersection-observer";
 import { viewContext } from "@/scripts/viewContext";
 import { projects, Project } from "@/scripts/projects";
@@ -21,6 +22,7 @@ export default function MyWork() {
     const { changeView } = useContext(viewContext)
     const technology = Object.freeze(["javascript", "php", "next", "git"])
     const Alltechnology = Object.freeze(["javascript", "php", "next", "git", "csharp", "css", "html", "java", "typescript", "laravel", "mysql", "postgreesql", "python", "react", "sass", "tailwind"])
+    const router = useRouter();
 
     const { ref, inView } = useInView({
         triggerOnce: false,
@@ -52,6 +54,11 @@ export default function MyWork() {
         }).filter(Boolean);
     };
 
+    const handlePlay = () => {
+        setTimeout(() => router.push(`/#game`), 100);
+    };
+
+
     return (
         <section className="section-container bg-[#347ABE]" id="works" ref={ref}>
             <div className="relative works overflow-hidden z-0 shrink-0 h-[100dvh] w-[100dvw] pb-[2vh]">
@@ -73,14 +80,11 @@ export default function MyWork() {
                     </span>
 
                     <span className="w-[45vw] max-md:w-[95vw] mt-[20dvh] mb-[20dvh]">
-                        <button className="w-full rounded-[50px] font-luck text-white button-play pt-[5vh] pb-[3vh] cursor-pointer">LET'S PLAY</button>
+                        <button onClick={() => { handlePlay() }} className="w-full rounded-[50px] font-luck text-white button-play pt-[5vh] pb-[3vh] cursor-pointer">LET'S PLAY</button>
                     </span>
 
                 </div>
             </div>
-
-
         </section>
-
     );
 }
